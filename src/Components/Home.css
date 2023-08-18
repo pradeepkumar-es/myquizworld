@@ -1,0 +1,40 @@
+.container1{
+    display: flex;
+    justify-content: space-around;
+    height: 420px;
+}
+.left{
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+.startbtn{
+    cursor: pointer;
+    font-size: 30px;
+    background-color:mediumblue;
+    margin-top: 15px;
+    border-radius: 5px;
+    padding: 2px 30px;
+    border: 0px;
+}
+a{
+    text-decoration: none;
+  
+    color: white;
+    font-weight: 100;
+}
+.startbtn:hover{
+    background-color: rgb(8, 225, 8);
+}
+.right img{
+    width: auto;
+}
+@media only screen and (max-width:600px){
+    .container1{
+        flex-direction: column-reverse;
+        height: auto;
+        margin: 15px;
+    }
+}

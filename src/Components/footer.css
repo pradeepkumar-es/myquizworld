@@ -1,0 +1,21 @@
+footer{
+    background-color: lightslategrey;
+    height: 137px;
+   
+}
+.footer{
+    display: flex;
+    justify-content:space-around;
+    padding: 2px 0px;
+}
+.footer ul li{
+    list-style: none;
+}
+.footer ul li b{
+    font-size: larger;
+}
+footer .copyright{
+    background-color: rgb(120, 117, 117);
+    text-align: center;
+    padding: 2px 0px;
+}
