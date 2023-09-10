@@ -1,0 +1,23 @@
+.containerforclass{
+    display: flex;
+    padding: 100px;
+    background-color: blueviolet;
+}
+containerforclass .btn{
+    display: flex;
+}
+.containerforclass .btn .left{
+    padding: 5px 20px;
+}
+.containerforclass .btn .right{
+    padding: 5px 20px;
+}
+.optionbtn:hover{
+    background-color: rgb(109, 109, 215);
+    color: white;
+}
+.checked{
+    background-color: blue;
+    color: white;
+    box-shadow: 2px;
+}
