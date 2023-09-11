@@ -38,6 +38,7 @@ function QuizClass5() {
     
   return (
     <div className="containerforclass">
+        <h2 className='heading'>Quiz For Class 5th students</h2>
         {displayResult?(
             <QuizResult marks={marks} totalmarks={QuizDataclass5.length}/>
         ):(<>
@@ -55,12 +56,8 @@ function QuizClass5() {
             )}
         </div>
         <div className="btn">
-            <div className="left">
-                <button onClick={backQue}>Back</button>
-            </div>
-            <div className="right">
-                <button onClick={nextQue}>Next</button>
-            </div>
+                <button className='backbtn' onClick={backQue}>Back</button>
+                <button className='nextbtn' onClick={nextQue}>Next</button>
         </div>
         </>)}
     </div>
