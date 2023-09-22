@@ -29,7 +29,7 @@ export default function About() {
         </ul>
       </div>
       <div className="aim">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque, eius?</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque, eius? xyz</p>
       </div>
       <div className="Team">
         <div className="mem1"></div>
