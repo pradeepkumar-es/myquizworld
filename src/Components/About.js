@@ -1,5 +1,6 @@
 import React from 'react'
 import headeraboutimg from '../images/about-header-image.png'
+import profileimg from '../images/profile.png'
 import './Styles/about.css'
 
 export default function About() {
@@ -37,10 +38,12 @@ export default function About() {
         <h3>Team</h3>
         <h1>Our Team</h1>
         <div className="member">
-          <div className="mem1">1</div>
-          <div className="mem1">2</div>
-          <div className="mem1">3</div>
-          <div className="mem1">4</div>
+          <div className="mem1"><img src={profileimg} alt="team member profile" /></div>
+          <div className="mem2"><img src={profileimg} alt="team member profile" /></div>
+          <div className="mem3"><img src={profileimg} alt="team member profile" /></div>
+          <div className="mem4"><img src={profileimg} alt="team member profile" /></div>
+          <div className="mem5"><img src={profileimg} alt="team member profile" /></div>
+          <div className="mem6"><img src={profileimg} alt="team member profile" /></div>
         </div>
       </div>
       <div className="Benefits">
