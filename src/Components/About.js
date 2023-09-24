@@ -2,6 +2,8 @@ import React from 'react'
 import headeraboutimg from '../images/about-header-image.png'
 import profileimg from '../images/profile.png'
 import './Styles/about.css'
+import{BsLinkedin, BsTwitter} from "react-icons/bs"
+import {MdEmail} from "react-icons/md"
 
 export default function About() {
   return (
@@ -38,12 +40,41 @@ export default function About() {
         <h3>Team</h3>
         <h1>Our Team</h1>
         <div className="member">
-          <div className="mem1"><img src={profileimg} alt="team member profile" /></div>
-          <div className="mem2"><img src={profileimg} alt="team member profile" /></div>
-          <div className="mem3"><img src={profileimg} alt="team member profile" /></div>
-          <div className="mem4"><img src={profileimg} alt="team member profile" /></div>
-          <div className="mem5"><img src={profileimg} alt="team member profile" /></div>
-          <div className="mem6"><img src={profileimg} alt="team member profile" /></div>
+          <div className="mem"><img src={profileimg} alt="team member profile" />
+            <p>lorem, Ipsum</p>
+            <h4>Founder</h4>
+            <a href="https://www.linkedin.com/in/pradeepkumar-es/" rel="noreferrer" target='_blank'><div className='linkedin'><BsLinkedin /></div></a>
+            <a href="mailto:kpradeep22@iitk.ac.in" rel="noreferrer" target='_blank'><div className='email'><MdEmail/></div></a>
+            <a href="https://twitter.com/" rel="noreferrer noopener" target='_blank'><div className='twitter'><BsTwitter/></div></a>
+          </div>
+          <div className="mem"><img src={profileimg} alt="team member profile" />
+             <p>lorem, Ipsum</p>
+             <h4>Web Executive</h4>
+             <a href="https://www.linkedin.com/in/pradeepkumar-es/" rel="noreferrer" target='_blank'><div className='linkedin'><BsLinkedin /></div></a>
+            <a href="mailto:kpradeep22@iitk.ac.in" rel="noreferrer" target='_blank'><div className='email'><MdEmail/></div></a>
+            <a href="https://twitter.com/" rel="noreferrer noopener" target='_blank'><div className='twitter'><BsTwitter/></div></a>
+          </div>
+          <div className="mem"><img src={profileimg} alt="team member profile" />
+              <p>lorem, Ipsum</p>
+              <h4>Marketing Head</h4>
+              <a href="https://www.linkedin.com/in/pradeepkumar-es/" rel="noreferrer" target='_blank'><div className='linkedin'><BsLinkedin /></div></a>
+            <a href="mailto:kpradeep22@iitk.ac.in" rel="noreferrer" target='_blank'><div className='email'><MdEmail/></div></a>
+            <a href="https://twitter.com/" rel="noreferrer noopener" target='_blank'><div className='twitter'><BsTwitter/></div></a>
+          </div>
+          <div className="mem"><img src={profileimg} alt="team member profile" />
+              <p>lorem, Ipsum</p>
+              <h4>Content Head</h4>
+              <a href="https://www.linkedin.com/in/pradeepkumar-es/" rel="noreferrer" target='_blank'><div className='linkedin'><BsLinkedin /></div></a>
+            <a href="mailto:kpradeep22@iitk.ac.in" rel="noreferrer" target='_blank'><div className='email'><MdEmail/></div></a>
+            <a href="https://twitter.com/" rel="noreferrer noopener" target='_blank'><div className='twitter'><BsTwitter/></div></a>
+          </div>
+          <div className="mem"><img src={profileimg} alt="team member profile" />
+            <p>lorem, Ipsum</p>
+            <h4>Research & Development Head</h4>
+            <a href="https://www.linkedin.com/in/pradeepkumar-es/" rel="noreferrer" target='_blank'><div className='linkedin'><BsLinkedin /></div></a>
+            <a href="mailto:kpradeep22@iitk.ac.in" rel="noreferrer" target='_blank'><div className='email'><MdEmail/></div></a>
+            <a href="https://twitter.com/" rel="noreferrer noopener" target='_blank'><div className='twitter'><BsTwitter/></div></a>
+          </div>
         </div>
       </div>
       <div className="Benefits">
