@@ -1,9 +1,11 @@
 import React from 'react'
 import headeraboutimg from '../images/about-header-image.png'
 import profileimg from '../images/profile.png'
+import business2 from '../images/business2.png'
 import './Styles/about.css'
 import{BsLinkedin, BsTwitter} from "react-icons/bs"
 import {MdEmail} from "react-icons/md"
+import { Link } from 'react-router-dom'
 
 export default function About() {
   return (
@@ -14,13 +16,13 @@ export default function About() {
           <h3>About Us</h3>
           <h1>We Provide Platform To <span style={{color:"yellow"}}>Practice</span>, <span style={{color:"yellow"}}>Learn</span> and <span style={{color:"yellow"}}>Enhance</span> Your Knowledge</h1>
            <div className="intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, consectetur officiis, qui eos eligendi provident praesentium nam asperiores libero sequi odit unde. Nisi quos deserunt tempore modi ipsum eius recusandae assumenda molestiae deleniti. Alias, totam cupiditate. Adipisci, id error cupiditate officia commodi est dolorem sequi beatae consectetur doloremque accusantium numquam?</div> 
-           <button>Our Feature</button>
+           <a href="#1"><button>Our Feature</button></a>
         </div>
       </div>
-      <div className="feature">
+      <div id="1" className="feature">
         <div className="left">
-          <h3>Feature</h3>
-          <h1>Our Features & Services</h1>
+          <h3 >Feature</h3>
+          <h1 >Our Features & Services</h1>
         </div>
         <div className="right">
         <ul>
@@ -76,28 +78,17 @@ export default function About() {
             <a href="https://twitter.com/" rel="noreferrer noopener" target='_blank'><div className='twitter'><BsTwitter/></div></a>
           </div>
         </div>
-      </div>
-      <div className="Benefits">
-        <p>Lorem ipsum dolor sit amet.</p>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-      <div className="aim">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque, eius? xyz</p>
-      </div>
-      
-      <div className="Reach Us">
-        <div className="contact"></div>
-        <div className="Social"></div>
-        <div className="E-mail"></div>
-        <div className="Address"></div>
+      </div> 
+      <div className="contact" style={{
+        height:'300px',
+        width:'1380px',
+        backgroundImage:`url(${business2})`}}>
+          <div className="content">
+              <h3>Contact</h3>
+              <h1>Looking For Business Opportunity </h1>
+                <h1> or have any Question</h1>
+              <Link to="/contact" target='_blank'><button>Contact Us</button></Link>
+          </div>
       </div>
     </div>
   )
