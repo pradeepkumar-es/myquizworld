@@ -4,7 +4,7 @@ import './Styles/contact.css'
 export default function Contact() {
   return (
     <div>
-      <div className="contact">
+      <div className="contactus">
         <div className="left">
           <h1>Let's Get In Touch</h1>
           <p>We are open to have any suggestion or just to have a chat </p>
