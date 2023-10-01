@@ -20,6 +20,7 @@ export default function Navabar() {
                     <li className='item'><Link to="/blog">Blog</Link></li>
                     <li className='item'><Link to="/about">About</Link></li>
                     <li className='item'><Link to="/contact">Contact</Link></li>
+                    <li className='item'><Link to="/signup">SignUp</Link></li>
                 </ul>
             </div>
             <div className='smallScreen_navbar_btn' onClick={handleToggle}> {/*in css module we can not use -( hyphen)*/}

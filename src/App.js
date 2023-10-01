@@ -17,6 +17,7 @@ import QuizClass9 from './Components/Quizzes/QuizClass9';
 import QuizClass10 from './Components/Quizzes/QuizClass10';
 import QuizClass11 from './Components/Quizzes/QuizClass11';
 import QuizClass12 from './Components/Quizzes/QuizClass12';
+import Signup from './Components/Signup';
 
 
 function App() {
@@ -39,10 +40,12 @@ function App() {
         <Route path='/about' element={<About/>} exact/>
         <Route path='/blog' element={<Blog/>} exact/>
         <Route path='/contact' element={<Contact/>} exact/>
+        <Route path="/signup" element={<Signup/>}  exact/>
        </Routes>
 
        
       <Footer/>
+      
        {/* <Routes> */}
         {/* <Route path='/' element={<Home/>} exact/> */}
         {/* <Route path='/quizzes' element={<Quizzes/>} exact/> */}

@@ -13,9 +13,10 @@ const firebaseConfig = {
   storageBucket: "myquizworld-a2850.appspot.com",
   messagingSenderId: "3230072239",
   appId: "1:3230072239:web:78f1c1ffab7bc772c1435a",
-  measurementId: "G-YD8WFD9ZCM"
+  measurementId: "G-YD8WFD9ZCM",
+  databaseURL: "https://myquizworld-a2850-default-rtdb.firebaseio.com/"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app); //export it also when you want to use in other component file
