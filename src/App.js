@@ -18,7 +18,7 @@ import QuizClass10 from './Components/Quizzes/QuizClass10';
 import QuizClass11 from './Components/Quizzes/QuizClass11';
 import QuizClass12 from './Components/Quizzes/QuizClass12';
 import Signup from './Components/Signup';
-
+import SignIn from './Components/SignIn';
 
 function App() {
   return (
@@ -41,6 +41,7 @@ function App() {
         <Route path='/blog' element={<Blog/>} exact/>
         <Route path='/contact' element={<Contact/>} exact/>
         <Route path="/signup" element={<Signup/>}  exact/>
+        <Route path="/signin" element={<SignIn/>} exact/>
        </Routes>
 
        

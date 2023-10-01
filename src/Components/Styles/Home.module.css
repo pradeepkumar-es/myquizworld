@@ -1,8 +1,8 @@
-.aboutus{
+.home{
     width: 100%;
     height:100%;
 }
-.aboutus .container1{
+.home .getstarted{
     display: flex;
     justify-content: space-around;
     height: 420px;
@@ -17,7 +17,7 @@
 .startbtn{
     cursor: pointer;
     font-size: 30px;
-    background-color:mediumblue;
+    background-color: rgb(16, 16, 39);
     margin-top: 15px;
     border-radius: 5px;
     padding: 2px 30px;
@@ -36,14 +36,53 @@ a{
     width: auto;
 }
 @media only screen and (max-width:600px){
-    .container1{
+    .getstarted{
         flex-direction: column-reverse;
         height: auto;
         margin: 15px;
     }
 }
 
-.aboutus .testimonials{
+.home .featureCon{
+    background-color: mediumblue;
+    text-align: center;
+    padding-top: 5px;
+}
+.home .featureCon .feature{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.home .featureCon .feature .feature1{
+    border: 1px;
+    margin: 2px;
+    width: 295px;
+    height: 295px;
+    border-style: solid;
+    border-radius: 3px;
+    border-color: white;
+    padding: 20px;
+}
+.home .featureCon h3{
+    color: yellow;
+    text-align: center;
+}
+.home .featureCon h1{
+    color: white;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+.home .testimonials{
     display: flex;
     flex-wrap: wrap;
     background-color: blanchedalmond;
