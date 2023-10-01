@@ -2,7 +2,7 @@ import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import {React, useState} from 'react'
 import {app} from '../firebase'
 
-const auth = getAuth(app);  
+const auth = getAuth(app);  //auth is an authentication instance or object provided by Firebase that allows you to perform authentication-related tasks.
 const Signup =()=> {
     const [email, setEmail] = useState("");
     const [password, setPassword] =useState("");
