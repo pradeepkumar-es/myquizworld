@@ -82,17 +82,28 @@ a{
 }
 
 .home .testimonials{
-    background-color: blanchedalmond;
-    height: 100px;
-    width: 50px;
-    
+    padding: 2px;
+    background-color: blue;
 }
 .home .testimonials h3{
     color: yellow;
     text-align: center;
 }
+.home .testimonials h1{
+    color: white;
+    text-align: center;
+}
 .home .testimonials .tmContainers {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: center;
+    
 }
+.home .testimonials .tmContainers .tm1 .tm2 .tm3 .tm4 .tm5 .tm6 {
+    border: 2px;
+    border-style: solid;
+    border-color: aliceblue;
+    padding: 110px;
+    background-color: blueviolet;
+}
+

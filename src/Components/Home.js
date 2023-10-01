@@ -8,9 +8,11 @@ import {FcIdea} from 'react-icons/fc'
 import {BiTimer} from 'react-icons/bi'
 import {TbDeviceAnalytics} from 'react-icons/tb'
 import {BsBook} from 'react-icons/bs'
+import profileimg from '../images/profile.png'
 
 
 const Home = () => {
+  const tm =["Rahul", "Pradeep", "Karan", "Aarsh", "Amrit", "Bhavya"];
   return (
     <div className={Styles.home}>
       <div className={Styles.getstarted}>
@@ -70,41 +72,41 @@ const Home = () => {
       <div className={Styles.tmContainers}>
           <div className={Styles.tm1}>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-            <div className="img"><img src="" alt="" /></div>
-            <div className="name"></div>
-            <div className="position"></div>
+            <div className="img"><img src={profileimg} alt="" /></div>
+            <div className="name">{tm[0]}</div>
+            <div className="position">Student</div>
           </div>
           <div className={Styles.tm2}>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-            <div className="img"><img src="" alt="" /></div>
-            <div className="name"></div>
-            <div className="position"></div>
+            <div className="img"><img src={profileimg} alt="" /></div>
+            <div className="name">{tm[1]}</div>
+            <div className="position">Student</div>
           </div>
           <div className={Styles.tm3}>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-            <div className="img"><img src="" alt="" /></div>
-            <div className="name"></div>
-            <div className="position"></div>
+            <div className="img"><img src={profileimg} alt="" /></div>
+            <div className="name">{tm[2]}</div>
+            <div className="position">Student</div>
           </div>
           <div className={Styles.tm4}>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-            <div className="img"><img src="" alt="" /></div>
-            <div className="name"></div>
-            <div className="position"></div>
+            <div className="img"><img src={profileimg} alt="" /></div>
+            <div className="name">{tm[3]}</div>
+            <div className="position">Student</div>
           </div>
           <div className={Styles.tm5}>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-            <div className="img"><img src="" alt="" /></div>
-            <div className="name"></div>
-            <div className="position"></div>
+            <div className="img"><img src={profileimg} alt="" /></div>
+            <div className="name">{tm[4]}</div>
+            <div className="position">Student</div>
           </div>
           <div className={Styles.tm6}>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-            <div className="img"><img src="" alt="" /></div>
-            <div className="name"></div>
-            <div className="position"></div>
+            <div className="img"><img src={profileimg} alt="" /></div>
+            <div className="name">{tm[5]}</div>
+            <div className="position">Student</div>
           </div>
-          </div>
+      </div>
     </div>
     </div>
   )
