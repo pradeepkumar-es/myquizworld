@@ -17,7 +17,7 @@
 .startbtn{
     cursor: pointer;
     font-size: 30px;
-    background-color: rgb(16, 16, 39);
+    background-color: rgb(30, 30, 228);
     margin-top: 15px;
     border-radius: 5px;
     padding: 2px 30px;
@@ -44,7 +44,7 @@ a{
 }
 
 .home .featureCon{
-    background-color: mediumblue;
+    background-color:initial;
     text-align: center;
     padding-top: 5px;
 }
@@ -73,19 +73,26 @@ a{
     color: white;
     text-align: center;
 }
-
-
-
-
-
-
-
-
+.home .featureCon .feature .feature1 h2{
+    color: yellow;
+    padding-top: 10px;
+}
+.home .featureCon .feature .feature1 p{
+    padding-top: 10px;
+}
 
 .home .testimonials{
-    display: flex;
-    flex-wrap: wrap;
     background-color: blanchedalmond;
     height: 100px;
     width: 50px;
+    
+}
+.home .testimonials h3{
+    color: yellow;
+    text-align: center;
+}
+.home .testimonials .tmContainers {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }

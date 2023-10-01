@@ -32,28 +32,34 @@ const Home = () => {
         <h1>Our Quiz Feature</h1>
         <div className={Styles.feature}>
           <div className={Styles.feature1}>
-            <MdQuiz/>
-            <h4>All Type of Questions</h4>
+            <MdQuiz size={120}/>
+            <h2>All Type of Questions</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum delectus error ipsa nihil obcaecati eos cupiditate adipisci est inventore quidem.</p>
           </div>
           <div className={Styles.feature1}>
-            <SiLevelsdotfyi/>
-            <h4>Level Wise Questions</h4>
+            <SiLevelsdotfyi size={120}/>
+            <h2>Level Wise Questions</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum delectus error ipsa nihil obcaecati eos cupiditate adipisci est inventore quidem.</p>
           </div>
           <div className={Styles.feature1}>
-            <FcIdea/>
-            <h4>Hint For Question</h4>
+            <FcIdea size={120}/>
+            <h2>Hint For Question</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum delectus error ipsa nihil obcaecati eos cupiditate adipisci est inventore quidem.</p>
           </div>
           <div className={Styles.feature1}>
-            <BiTimer/>
-            <h4>Quiz with Timer</h4>
+            <BiTimer size={120}/>
+            <h2>Quiz with Timer</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum delectus error ipsa nihil obcaecati eos cupiditate adipisci est inventore quidem.</p>
           </div>
           <div className={Styles.feature1}>
-            <TbDeviceAnalytics/>
-            <h4>Result Analysis</h4>
+            <TbDeviceAnalytics size={120}/>
+            <h2>Result Analysis</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum delectus error ipsa nihil obcaecati eos cupiditate adipisci est inventore quidem.</p>
           </div>
           <div className={Styles.feature1}>
-            <BsBook/>
-            <h4>Subject & Topic Wise Questions</h4>
+            <BsBook size={120}/>
+            <h2>Subject & Topic Wise Questions</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum delectus error ipsa nihil obcaecati eos cupiditate adipisci est inventore quidem.</p>
           </div>
         </div>
     </div>
@@ -61,42 +67,44 @@ const Home = () => {
     <div className={Styles.testimonials}>
       <h3>Testimonials</h3>
       <h1>What Student Say about us</h1>
-      <div className={Styles.tm1}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-        <div className="img"><img src="" alt="" /></div>
-        <div className="name"></div>
-        <div className="position"></div>
-      </div>
-      <div className={Styles.tm2}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-        <div className="img"><img src="" alt="" /></div>
-        <div className="name"></div>
-        <div className="position"></div>
-      </div>
-      <div className={Styles.tm3}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-        <div className="img"><img src="" alt="" /></div>
-        <div className="name"></div>
-        <div className="position"></div>
-      </div>
-      <div className={Styles.tm4}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-        <div className="img"><img src="" alt="" /></div>
-        <div className="name"></div>
-        <div className="position"></div>
-      </div>
-      <div className={Styles.tm5}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-        <div className="img"><img src="" alt="" /></div>
-        <div className="name"></div>
-        <div className="position"></div>
-      </div>
-      <div className={Styles.tm6}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-        <div className="img"><img src="" alt="" /></div>
-        <div className="name"></div>
-        <div className="position"></div>
-      </div>
+      <div className={Styles.tmContainers}>
+          <div className={Styles.tm1}>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+            <div className="img"><img src="" alt="" /></div>
+            <div className="name"></div>
+            <div className="position"></div>
+          </div>
+          <div className={Styles.tm2}>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+            <div className="img"><img src="" alt="" /></div>
+            <div className="name"></div>
+            <div className="position"></div>
+          </div>
+          <div className={Styles.tm3}>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+            <div className="img"><img src="" alt="" /></div>
+            <div className="name"></div>
+            <div className="position"></div>
+          </div>
+          <div className={Styles.tm4}>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+            <div className="img"><img src="" alt="" /></div>
+            <div className="name"></div>
+            <div className="position"></div>
+          </div>
+          <div className={Styles.tm5}>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+            <div className="img"><img src="" alt="" /></div>
+            <div className="name"></div>
+            <div className="position"></div>
+          </div>
+          <div className={Styles.tm6}>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+            <div className="img"><img src="" alt="" /></div>
+            <div className="name"></div>
+            <div className="position"></div>
+          </div>
+          </div>
     </div>
     </div>
   )
