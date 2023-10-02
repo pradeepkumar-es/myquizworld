@@ -12,7 +12,7 @@ import profileimg from '../images/profile.png'
 
 
 const Home = () => {
-  const tm =["Rahul", "Pradeep", "Karan", "Aarsh", "Amrit", "Bhavya"];
+  const tm =["Rahul Kumar", "Pradeep Kumar", "Karan Jangid", "Aarsh Choudhary", "Amrit Kumar", "Bhavya Garg"];
   return (
     <div className={Styles.home}>
       <div className={Styles.getstarted}>
@@ -20,7 +20,7 @@ const Home = () => {
           <h1>A Quiz Platform To</h1>
           <h1>Boost Your Knowledge</h1>
           <div>
-            <button className={Styles.startbtn}><Link to="/Quizzes">Get Started</Link></button>
+          <Link to="/Quizzes"><button className={Styles.startbtn}>Get Started</button></Link>
             </div>
         </div>
           
@@ -71,40 +71,40 @@ const Home = () => {
       <h1>What Student Say about us</h1>
       <div className={Styles.tmContainers}>
           <div className={Styles.tm1}>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+            <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?"</p>
             <div className="img"><img src={profileimg} alt="" /></div>
             <div className="name">{tm[0]}</div>
             <div className="position">Student</div>
           </div>
-          <div className={Styles.tm2}>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+          <div className={Styles.tm1}>
+            <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?"</p>
             <div className="img"><img src={profileimg} alt="" /></div>
             <div className="name">{tm[1]}</div>
             <div className="position">Student</div>
           </div>
-          <div className={Styles.tm3}>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+          <div className={Styles.tm1}>
+            <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?"</p>
             <div className="img"><img src={profileimg} alt="" /></div>
             <div className="name">{tm[2]}</div>
             <div className="position">Student</div>
           </div>
-          <div className={Styles.tm4}>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+          <div className={Styles.tm1}>
+            <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?"</p>
             <div className="img"><img src={profileimg} alt="" /></div>
             <div className="name">{tm[3]}</div>
             <div className="position">Student</div>
           </div>
-          <div className={Styles.tm5}>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
+          <div className={Styles.tm1}>
+            <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?"</p>
             <div className="img"><img src={profileimg} alt="" /></div>
             <div className="name">{tm[4]}</div>
             <div className="position">Student</div>
           </div>
-          <div className={Styles.tm6}>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?</p>
-            <div className="img"><img src={profileimg} alt="" /></div>
-            <div className="name">{tm[5]}</div>
-            <div className="position">Student</div>
+          <div className={Styles.tm1}>
+          <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rerum?"</p>
+              <div className="img"><img src={profileimg} alt="" /></div>
+                <div className="name">{tm[5]}</div>
+                <div className="position">Student</div>
           </div>
       </div>
     </div>
