@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    margin: 10px;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    
+}
+.quizclass{
+    color: black;
+    border: 1px;
+    margin: 20px;
+    padding: 50px;
+    width: 283px;
+    height: 54px;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    border-radius: 10px;
+}
+.quizclass button{
+    padding: 5px 30px;
+    margin-top: 5px;
+    background-color: rgba(26, 87, 178, 0.935);
+    border-radius: 5px;
+    color: rgb(251, 251, 251);
+    font-weight: bold;
+    font-size: medium;
+    border-style: none;
+
+}
+button:hover{
+    cursor: pointer;
+    background-color: rgb(13, 124, 13);
+    color: white;
+    
+}

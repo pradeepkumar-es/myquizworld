@@ -1,0 +1,51 @@
+.contactus{
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(54, 16, 61, 0.911);
+    margin: 146px;
+    padding: 30px;
+}
+.contactus .left{
+    padding: 120px 50px 50px 50px;
+    width: 50%;
+    text-align: start;
+}
+.contactus .rigth{
+    width: 50%;
+}
+.contactus .form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px 20px 5px 20px ;
+    background-color: rgb(226, 183, 252);
+    height: 416px;
+    width: 537px;
+}
+.contactus .form button{
+    background-color: rgb(110, 17, 103);
+    border-radius: 2px;
+    border-style: none;
+    margin-top: 3px;
+    padding: 2px 10px 2px 10px;
+    align-content: center;
+    color: white;
+    max-height: 150px;
+    max-width: 100%;
+}
+.contactus .form button:hover{
+    background-color: rgb(221, 51, 184);
+    color: rgb(240, 231, 219);
+}
+.contactus .form #name, #email, #subject {
+    padding: 1px 1px;
+    height: 38px;
+    border-radius: 1px;
+    border-style: none;
+    border: 0px;
+}
+.contactus .form #message{
+    padding: 1px;
+    border-radius: 2px;
+    border-style: none;
+}

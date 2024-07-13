@@ -1,0 +1,64 @@
+.containerforclass{
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+    background-color: blueviolet;
+    border-radius: 10px;
+    margin: 25px 50px;
+}
+.containerforclass .heading{
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+.containerforclass .question{
+    background-color:rgb(8, 39, 29);
+    padding: 15px 5px;
+    font-size: larger;
+}
+.containerforclass .option{
+    background-color: aliceblue;
+}
+.containerforclass .option .optionbtn{
+    padding-left: 5px;
+    padding-top: 2px;
+    height: 50px;
+    width: 1003px;
+    font-size:large;
+    display: flex;
+    flex-direction:column;
+    text-align: start;
+    border-width: 1px 0px;
+    border-color: rgba(14, 14, 14, 0.32);
+}
+
+.containerforclass .btn{
+    display: flex;
+    background-color: aquamarine;
+    align-content:space-between;
+    padding: 5px;
+}
+.containerforclass .backbtn{
+    padding: 2px 15px;
+    margin: 0px 732px 0px 73px ;
+    font-size: larger;
+    font-weight: bold;
+    border-radius: 3px;
+    border-style: none;
+}
+.containerforclass .nextbtn {
+    padding: 2px 15px;
+    font-size: larger;
+    font-weight: bold;
+    border-radius: 3px;
+    border-style: none;
+}
+.optionbtn:hover{
+    background-color: rgb(109, 109, 215);
+    color: white;
+}
+.checked{
+    background-color: blue;
+    color: white;
+    box-shadow: 2px;
+}

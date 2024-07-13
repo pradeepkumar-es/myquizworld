@@ -1,0 +1,135 @@
+
+.aboutus .about .left{
+    height: 250px;
+    width: 50%;
+}
+.aboutus .about .right{
+    margin-top: 59px;
+    padding-right: 50px;
+}
+.aboutus .about .right h3{
+    color: yellow;
+    margin: 10px 0px 3px 0px;
+    padding: 0px 0px 5px 0px;
+    text-transform: uppercase;
+}
+.aboutus .about .right h1{
+    color: rgb(221, 210, 210);
+}
+.aboutus .about .right button{
+    color:white;
+    background-color: rgba(85, 255, 6, 0.576);
+    padding: 10px 20px 10px 20px;
+    margin: 10px 0px 10px 0px;
+    border-style: none;
+    text-decoration-thickness: 2px;
+    text-decoration: solid;
+    border-radius: 2px;
+}
+.aboutus .about{
+    display: flex;
+    margin-top: 25px;
+    padding: 15px;
+    height: 414px;
+    width: 99%;
+}
+.aboutus .feature{
+    display: flex;
+}
+.aboutus .feature .left{
+    justify-items: center;
+    width: 50%;
+    padding: 118px;
+    background-color: rgba(12, 12, 54, 0.659);
+}
+.aboutus .feature .right{
+    justify-content: center;
+    width: 50%;
+    padding: 30px 137px 5px 137px;
+    background-color:rgba(12, 12, 54, 0.659) ;
+}
+.aboutus .feature .right ul li{
+    text-decoration: circle;
+    font-size: larger;
+    font-weight: 300;
+    font-weight: bold;
+    padding: 1px;
+    color: rgb(222, 208, 208);
+}
+
+.aboutus .feature h3{
+    color: yellow;
+    text-align: center;
+    text-transform: uppercase;
+}
+.aboutus .feature h1{
+    text-align: center;
+}
+
+.aboutus .team h3{
+    color: yellow;
+    text-align: center;
+    text-transform: uppercase;
+}
+.aboutus .team h1{
+    text-align: center;
+    text-transform: capitalize;
+}
+.aboutus .team .member{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(239, 177, 240)violet;
+    padding: 50px;
+}
+.aboutus .team .member div{
+    padding: 0px 2px 11px 5px;
+    background-color: azure;
+    color: black;
+    margin: 2px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    
+}
+.aboutus .team .member .mem div{
+    /* display: flex;*/
+    display: inline;
+    padding: 3px ;
+}
+.aboutus .team .member .mem .linkedin link{
+
+    color: white;
+    background-color: black;
+}
+.aboutus .contact{
+   background-repeat: no-repeat;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   justify-content: space-between;
+}
+.aboutus .contact .content {
+    padding: 98px 176px 0px 0px;
+}
+.aboutus .contact h3{
+    color:rgb(253, 228, 4);
+    
+    /* padding-right: 100px;
+    text-align: right; */
+    text-transform: uppercase;
+}
+.aboutus .contact h1{
+    text-transform: capitalize;
+    color: darkblue;
+    /* text-align: right;
+    padding-right: 80px; */
+}
+.aboutus .contact button{
+    padding: 5px 22px;
+    border: 0px;
+    border-radius: 1px;
+    color: white;
+    background-color: darkgreen;
+    font-size: larger;
+    margin-top: 11px;
+}
