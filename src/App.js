@@ -24,6 +24,7 @@ function App() {
   return (
    <>
    <Router>
+    <div className='app'>
       <Navabar/>
        <Routes>
         <Route path='/' element={<Home/>} exact/>
@@ -54,6 +55,7 @@ function App() {
         <Route path='/blog' element={<Blog/>} exact/>
         <Route path='/contact' element={<Contact/>} exact/> */}
        {/* </Routes> */}
+       </div>
   </Router>
   </>
   )

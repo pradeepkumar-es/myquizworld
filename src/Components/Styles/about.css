@@ -1,11 +1,11 @@
 
 .aboutus .about .left{
-    height: 250px;
+    /* height: 250px; */
     width: 50%;
 }
 .aboutus .about .right{
     margin-top: 59px;
-    padding-right: 50px;
+    /* padding-right: 50px; */
 }
 .aboutus .about .right h3{
     color: yellow;
@@ -30,22 +30,25 @@
     display: flex;
     margin-top: 25px;
     padding: 15px;
-    height: 414px;
-    width: 99%;
+    justify-content: space-around;
+    align-items: center;
 }
 .aboutus .feature{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 .aboutus .feature .left{
     justify-items: center;
     width: 50%;
-    padding: 118px;
+    padding: 18px;
     background-color: rgba(12, 12, 54, 0.659);
 }
 .aboutus .feature .right{
     justify-content: center;
     width: 50%;
-    padding: 30px 137px 5px 137px;
+    padding: 5px 10px ;
     background-color:rgba(12, 12, 54, 0.659) ;
 }
 .aboutus .feature .right ul li{
@@ -77,6 +80,7 @@
 }
 .aboutus .team .member{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     background-color: rgb(239, 177, 240)violet;
     padding: 50px;
@@ -105,11 +109,14 @@
    background-repeat: no-repeat;
    display: flex;
    flex-direction: column;
-   align-items: flex-end;
    justify-content: space-between;
 }
 .aboutus .contact .content {
-    padding: 98px 176px 0px 0px;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .aboutus .contact h3{
     color:rgb(253, 228, 4);
@@ -132,4 +139,17 @@
     background-color: darkgreen;
     font-size: larger;
     margin-top: 11px;
+}
+@media screen and (max-width:768px) {
+    .about{
+        flex-direction: column;
+    }
+    .feature{
+        flex-direction: column;
+    }
+    .aboutus .about .left img{
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
 }

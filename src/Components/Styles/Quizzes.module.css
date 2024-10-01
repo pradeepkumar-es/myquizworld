@@ -3,6 +3,7 @@
     margin: 10px;
     flex-wrap: wrap;
     border-radius: 10px;
+    justify-content: center;
     
 }
 .quizclass{

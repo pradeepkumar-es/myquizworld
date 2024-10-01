@@ -81,12 +81,13 @@ export default function About() {
       </div> 
       <div className="contact" style={{
         height:'300px',
-        width:'1380px',
-        backgroundImage:`url(${business2})`}}>
+        // width:'1380px',
+        // backgroundImage:`url(${business2})`
+        }}>
           <div className="content">
               <h3>Contact</h3>
-              <h1>Looking For Business Opportunity </h1>
-                <h1> or have any Question</h1>
+              <h2>Looking For Business Opportunity </h2>
+                <h2> or have any Question</h2>
               <Link to="/contact" target='_blank'><button>Contact Us</button></Link>
           </div>
       </div>

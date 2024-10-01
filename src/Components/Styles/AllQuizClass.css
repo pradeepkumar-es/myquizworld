@@ -23,7 +23,8 @@
     padding-left: 5px;
     padding-top: 2px;
     height: 50px;
-    width: 1003px;
+    /* width: 1003px; */
+    width: 100%;
     font-size:large;
     display: flex;
     flex-direction:column;
@@ -35,12 +36,11 @@
 .containerforclass .btn{
     display: flex;
     background-color: aquamarine;
-    align-content:space-between;
+    justify-content:space-between;
     padding: 5px;
 }
 .containerforclass .backbtn{
     padding: 2px 15px;
-    margin: 0px 732px 0px 73px ;
     font-size: larger;
     font-weight: bold;
     border-radius: 3px;
