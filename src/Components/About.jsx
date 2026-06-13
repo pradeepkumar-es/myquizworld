@@ -1,7 +1,7 @@
 import React from 'react'
-import headeraboutimg from '../images/about-header-image.png'
-import profileimg from '../images/profile.png'
-import business2 from '../images/business2.png'
+import headeraboutimg from '../assets/about-header-image.png'
+import profileimg from '../assets/profile.png'
+import business2 from '../assets/business2.png'
 import './Styles/about.css'
 import{BsLinkedin, BsTwitter} from "react-icons/bs"
 import {MdEmail} from "react-icons/md"
