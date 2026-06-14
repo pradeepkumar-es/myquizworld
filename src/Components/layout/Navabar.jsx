@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './Styles/header.css'
+import './header.css'
 import { CgMenu, CgClose } from "react-icons/cg";
 import { useState } from 'react';
 
@@ -16,7 +16,7 @@ export default function Navabar() {
             <div className='right'>
                 <ul className='right'>
                     <li className='item'><Link to="/">Home</Link></li>
-                    <li className='item'><Link to="/quizzes">Quizzes</Link></li>
+                    <li className='item'><Link to="/categories">Categories</Link></li>
                     {/* <li className='item'><Link to="/blog">Blog</Link></li> */}
                     <li className='item'><Link to="/about">About</Link></li>
                     <li className='item'><Link to="/contact">Contact</Link></li>

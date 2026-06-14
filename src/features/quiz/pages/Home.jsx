@@ -1,6 +1,6 @@
 import React from 'react'
-import Styles from './Styles/Home.module.css'
-import img1 from '../assets/bg1.png'
+import Styles from './Home.module.css'
+import img1 from '../../../assets/bg1.png'
 import {Link} from 'react-router-dom'
 import {MdQuiz} from 'react-icons/md'
 import {SiLevelsdotfyi} from 'react-icons/si'
@@ -8,7 +8,7 @@ import {FcIdea} from 'react-icons/fc'
 import {BiTimer} from 'react-icons/bi'
 import {TbDeviceAnalytics} from 'react-icons/tb'
 import {BsBook} from 'react-icons/bs'
-import profileimg from '../assets/profile.png'
+import profileimg from '../../../assets/profile.png'
 
 
 const Home = () => {

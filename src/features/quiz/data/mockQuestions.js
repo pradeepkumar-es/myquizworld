@@ -1,4 +1,4 @@
-export const QuizDataclass5=[
+export const questions=[
     {Question: "Who is PM of India",
      option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
      Answer:1

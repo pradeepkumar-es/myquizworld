@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     padding: 100px;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     border-radius: 10px;
     margin: 25px 50px;
 }
@@ -38,20 +38,6 @@
     background-color: aquamarine;
     justify-content:space-between;
     padding: 5px;
-}
-.containerforclass .backbtn{
-    padding: 2px 15px;
-    font-size: larger;
-    font-weight: bold;
-    border-radius: 3px;
-    border-style: none;
-}
-.containerforclass .nextbtn {
-    padding: 2px 15px;
-    font-size: larger;
-    font-weight: bold;
-    border-radius: 3px;
-    border-style: none;
 }
 .optionbtn:hover{
     background-color: rgb(109, 109, 215);

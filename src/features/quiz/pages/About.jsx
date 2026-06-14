@@ -1,8 +1,8 @@
 import React from 'react'
-import headeraboutimg from '../assets/about-header-image.png'
-import profileimg from '../assets/profile.png'
-import business2 from '../assets/business2.png'
-import './Styles/about.css'
+import headeraboutimg from '../../../assets/about-header-image.png'
+import profileimg from '../../../assets/profile.png'
+import business2 from '../../../assets/business2.png'
+import './about.css'
 import{BsLinkedin, BsTwitter} from "react-icons/bs"
 import {MdEmail} from "react-icons/md"
 import { Link } from 'react-router-dom'
