@@ -11,18 +11,18 @@ export default function Categories() {
 }
   return (
     <div style={container}>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
-      <CategoryCard category={"class 5th"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
+      <CategoryCard category={"Random Category"}/>
     </div>
   );
 }
