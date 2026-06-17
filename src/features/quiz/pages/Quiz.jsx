@@ -3,7 +3,7 @@ import "./quiz.css";
 import { questions } from "../data/mockQuestions";
 import QuizResult from "./QuizResult";
 import { Button } from "../../../Components/ui/Button";
-import { quizAPI } from "../services/quizApi";
+import { quizAPI } from "../services/quizAPI";
 import { decodeHTML } from "../utils/decodeHTML";
 import {shuffleCollection} from "../utils/shuffleCollection";
 function Quiz() {
