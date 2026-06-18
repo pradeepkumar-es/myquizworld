@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import "./quiz.css";
 import { questions } from "../data/mockQuestions";
 import QuizResult from "./QuizResult";
 import { Button } from "../../../Components/ui/Button";
 import { quizAPI } from "../services/quizAPI";
 import { decodeHTML } from "../utils/decodeHTML";
-import {shuffleCollection} from "../utils/shuffleCollection";
+import { shuffleCollection } from "../utils/shuffleCollection";
 function Quiz() {
   const [queData, setQueData] = useState([]);
   const [currentQue, setCurrentQue] = useState(0);
@@ -14,24 +15,34 @@ function Quiz() {
   const [displayResult, setDisplayResult] = useState(false);
   const [options, setOptions] = useState([]);
   const hasFetched = useRef(false); //to stop strict mode to re-run api too frequently to avoid api block in development mode
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryNum = searchParams.get("category"); //get categoryNum from current url's query string
+  // console.log("categoryNum", categoryNum);
+  const quizCategory = decodeHTML(queData?.[currentQue]?.category);
 
   const handleOption = (data, queIndex) => {
     const option = [
       data[queIndex].correct_answer,
       ...data[queIndex].incorrect_answers,
     ];
-    const decodedOption = option.map(val=>decodeHTML(val));
+    const decodedOption = option.map((val) => decodeHTML(val));
     const shuffledOptions = shuffleCollection(decodedOption);
     setOptions(shuffledOptions);
   };
+
   useEffect(() => {
     if (hasFetched.current) return;
     hasFetched.current = true;
 
     // let ignore = false;
     console.log("Effect is running");
+    let apiURL =
+      categoryNum > 8
+        ? `https://opentdb.com/api.php?amount=10&category=${categoryNum}&type=multiple`
+        : "https://opentdb.com/api.php?amount=10&type=multiple"; //for random category there is no category params in api
+
     async function loadData() {
-      const data = await quizAPI();
+      const data = await quizAPI(apiURL, categoryNum);
       // if (!ignore) {
       setQueData(data);
       handleOption(data, 0);
@@ -65,7 +76,9 @@ function Quiz() {
   };
   return (
     <div className="containerforclass">
-      <h2 className="heading">Quiz For Class 5th students</h2>
+      <h2 className="heading">
+        Quiz on {queData.length > 0 ? quizCategory : "...."}
+      </h2>
       {displayResult ? (
         <QuizResult marks={marks} totalmarks={queData?.length} />
       ) : (

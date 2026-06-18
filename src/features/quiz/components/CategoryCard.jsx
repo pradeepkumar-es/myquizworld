@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import { Button } from "../../../Components/ui/Button";
-export function CategoryCard({category}){
+export function CategoryCard({category, categoryNum}){
     const quizclass = {
     color: "black",
     border: "1px",
@@ -15,8 +15,8 @@ export function CategoryCard({category}){
     return (
               <div style={quizclass} >
                 <h2>{category}</h2>
-                <Link to="/categories/quiz">
-                  <Button text = "Start" />
+                <Link to={`/categories/quiz?amount=10&category=${categoryNum}&type=multiple`}>
+                  <Button text = "Start"/>
                 </Link>
               </div>
     )
