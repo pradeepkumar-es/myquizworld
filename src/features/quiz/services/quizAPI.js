@@ -2,7 +2,7 @@
 export async function quizAPI(url, categoryNum){ //default url for random category
     const cached = localStorage.getItem(`${categoryNum}`);
     console.log("CACHE", cached)
-    if(JSON.parse(cached).length > 0){ //for .length to work we need to parse  because data from localStorage is stringified data
+    if(cached){
         console.log("returning from cache");
         return JSON.parse(cached);
     }

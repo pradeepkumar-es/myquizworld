@@ -42,13 +42,19 @@ function Quiz() {
         : "https://opentdb.com/api.php?amount=10&type=multiple"; //for random category there is no category params in api
 
     async function loadData() {
-      const data = await quizAPI(apiURL, categoryNum);
-      // if (!ignore) {
-      setQueData(data);
-      handleOption(data, 0);
-      // }
-      console.log(data);
+      try {
+        const data = await quizAPI(apiURL, categoryNum);
+        // if (!ignore) {
+        setQueData(data);
+        handleOption(data, 0);
+        // }
+        console.log(data);
+      }catch(err){
+        console.log("Error:", err.message)
+      }
+
     }
+    console.log("loading")
     loadData();
     // return () => {
     //   ignore = true;
@@ -105,7 +111,7 @@ function Quiz() {
                     setSelectedopt(i + 1);
                     updateScore();
                   }} //when user click one of option, state update with option 1/2/3/4 which cause component re-render, now this time
-                  //  one of the option get match with i+1 so that one option get checked
+                //  one of the option get match with i+1 so that one option get checked
                 >
                   {" "}
                   {option}
