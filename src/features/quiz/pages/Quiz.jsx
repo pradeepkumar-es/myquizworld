@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
+import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {createPortal} from "react-dom";
 import "./quiz.css";
 import { questions } from "../data/mockQuestions";
 import QuizResult from "./QuizResult";
@@ -17,6 +20,7 @@ function Quiz() {
   const hasFetched = useRef(false); //to stop strict mode to re-run api too frequently to avoid api block in development mode
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryNum = searchParams.get("category"); //get categoryNum from current url's query string
+  const navigate = useNavigate(); //return a function
   // console.log("categoryNum", categoryNum);
   const quizCategory = decodeHTML(queData?.[currentQue]?.category);
 
@@ -80,13 +84,26 @@ function Quiz() {
       setMarks(marks + 1);
     }
   };
+  const handleModalClose = ()=>{
+    setDisplayResult(false);
+    navigate('/categories', {replace:true}); //2nd argument to avoid going back to prev page after navigation 
+  }
+
+  //hide scroll when result modal is displayed
+  useEffect(()=>{
+      document.body.style.overflow = displayResult ?'hidden' : 'scroll';
+
+      return ()=>{
+        document.body.style.overflow = 'scroll';
+      }
+  }, [displayResult])
   return (
     <div className="containerforclass">
       <h2 className="heading">
         Quiz on {queData.length > 0 ? quizCategory : "...."}
       </h2>
       {displayResult ? (
-        <QuizResult marks={marks} totalmarks={queData?.length} />
+        createPortal(<QuizResult marks={marks} totalmarks={queData?.length} onClick = {handleModalClose} quizCategory={quizCategory} />, document.getElementById("quizResultModal"))
       ) : (
         <>
           <div className="question">
