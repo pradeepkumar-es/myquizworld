@@ -26,9 +26,9 @@ function App() {
             <Route path="/categories/quiz" element={
               <Suspense fallback={<div>Loading...</div>}><Quiz/></Suspense>
             } exact />
-            <Route path="/about" element={<About />} exact />
-            <Route path="/blog" element={<Blog />} exact />
-            <Route path="/contact" element={<Contact />} exact />
+            {/* <Route path="/about" element={<About />} exact /> */}
+            {/* <Route path="/blog" element={<Blog />} exact /> */}
+            {/* <Route path="/contact" element={<Contact />} exact /> */}
             {/* <Route path="/signup" element={<Signup/>}  exact/> */}
             {/* <Route path="/signin" element={<SignIn/>} exact/> */}
           </Routes>

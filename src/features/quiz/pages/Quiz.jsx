@@ -100,14 +100,14 @@ function Quiz() {
   return (
     <div className="containerforclass">
       <h2 className="heading">
-        Quiz on {queData.length > 0 ? quizCategory : "...."}
+        Quiz on {queData?.length > 0 ? quizCategory : "...."}
       </h2>
       {displayResult ? (
         createPortal(<QuizResult marks={marks} totalmarks={queData?.length} onClick = {handleModalClose} quizCategory={quizCategory} />, document.getElementById("quizResultModal"))
       ) : (
         <>
           <div className="question">
-            {queData.length > 0 ? (
+            {queData?.length > 0 ? (
               <>
                 <span>
                   {currentQue + 1}/{queData?.length}:{" "}

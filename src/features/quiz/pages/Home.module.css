@@ -118,7 +118,7 @@ a{
 
 .home .testimonials{
     padding: 2px;
-    background-color: rgb(5, 5, 20);
+    background-color: #000080;
 }
 .home .testimonials h3{
     color: yellow;
@@ -147,7 +147,7 @@ a{
     border-style: solid;
     border-color: aliceblue;
     padding: 10px;
-    background-color: rgba(16, 10, 43, 0.253);
+    background-color: #000080;
 }
 .home .testimonials .tmContainers .tm1 img{
     width: 100px;

@@ -1,6 +1,7 @@
 footer{
     background-color: lightslategrey;
-    height: 137px;
+    /* height: 137px; */
+    height: 25px;
     margin-top: auto;
    
 }
@@ -16,7 +17,7 @@ footer{
     font-size: larger;
 }
 footer .copyright{
-    background-color: rgb(120, 117, 117);
+    background-color: #6d8196;
     text-align: center;
     padding: 2px;
 }

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 export default function Footer() {
   return (
     <footer>
-        <div className={Styles.footer}>
+        {/* <div className={Styles.footer}>
             <div className={Styles.footer1}><h2>My Quiz World</h2></div>
             <div className={Styles.footer2}>
                 <ul>
@@ -24,9 +24,9 @@ export default function Footer() {
                     <li>Linkedin</li>
                 </ul>
             </div>
-        </div>
+        </div> */}
         <div className={Styles.copyright}>
-            Copyright &copy;| myquizworld.com | All Rights Resereverd  
+            &copy; 2026 | Made by <b><a href="https://pradeepkumar-es.netlify.app/" target='_blank' style = {{color:"blue"}} > Pradeep </a></b> with &hearts; | All Rights Resereverd  
         </div>
     </footer>
   )

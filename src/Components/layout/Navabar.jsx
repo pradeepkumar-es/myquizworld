@@ -12,14 +12,14 @@ export default function Navabar() {
   return (
     <header>
         <nav className={toggle?'nav expanded':'nav'/*{`${Styles.nav} ${Styles.expanded}`}:{Styles.nav}*/}>
-            <div className='left'>My Quiz World</div>
+            <div className='left'><Link to="/" >My Quiz World</Link></div>
             <div className='right'>
                 <ul className='right'>
                     <li className='item'><Link to="/">Home</Link></li>
                     <li className='item'><Link to="/categories">Categories</Link></li>
                     {/* <li className='item'><Link to="/blog">Blog</Link></li> */}
-                    <li className='item'><Link to="/about">About</Link></li>
-                    <li className='item'><Link to="/contact">Contact</Link></li>
+                    {/* <li className='item'><Link to="/about">About</Link></li> */}
+                    {/* <li className='item'><Link to="/contact">Contact</Link></li> */}
                     {/* <li className='item'><Link to="/signup">SignUp</Link></li> */}
                     {/* <li className='item'><Link to="/signin">Sign In</Link></li> */}
                 </ul>
