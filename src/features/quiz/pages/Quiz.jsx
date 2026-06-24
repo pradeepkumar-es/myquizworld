@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import {Link} from "react-router-dom";
-import {useNavigate} from "react-router-dom";
-import {createPortal} from "react-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { createPortal } from "react-dom";
 import "./quiz.css";
 import { questions } from "../data/mockQuestions";
 import QuizResult from "./QuizResult";
@@ -23,6 +23,28 @@ function Quiz() {
   const navigate = useNavigate(); //return a function
   // console.log("categoryNum", categoryNum);
   const quizCategory = decodeHTML(queData?.[currentQue]?.category);
+
+  //timer
+  const [timer, setTimer] = useState(150);
+  useEffect(() => {
+    if(queData.length <=0 ) return; //start timer only when que data loaded
+    console.log("inside time");
+    const intervalId = setInterval(() => {
+      setTimer((t) => {
+        if (t <= 0) {
+          clearInterval(intervalId);
+          setDisplayResult(true);
+          return 0;
+        } else {
+          return t - 1;
+        }
+      });
+    }, 1000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [queData.length]);
+  const timeString = Math.floor(timer / 60) + " : " + (timer % 60);
 
   const handleOption = (data, queIndex) => {
     const option = [
@@ -53,12 +75,11 @@ function Quiz() {
         handleOption(data, 0);
         // }
         console.log(data);
-      }catch(err){
-        console.log("Error:", err.message)
+      } catch (err) {
+        console.log("Error:", err.message);
       }
-
     }
-    console.log("loading")
+    console.log("loading");
     loadData();
     // return () => {
     //   ignore = true;
@@ -84,26 +105,43 @@ function Quiz() {
       setMarks(marks + 1);
     }
   };
-  const handleModalClose = ()=>{
+  const handleModalClose = () => {
     setDisplayResult(false);
-    navigate('/categories', {replace:true}); //2nd argument to avoid going back to prev page after navigation 
-  }
+    navigate("/categories", { replace: true }); //2nd argument to avoid going back to prev page after navigation
+  };
 
   //hide scroll when result modal is displayed
-  useEffect(()=>{
-      document.body.style.overflow = displayResult ?'hidden' : 'scroll';
+  useEffect(() => {
+    document.body.style.overflow = displayResult ? "hidden" : "scroll";
 
-      return ()=>{
-        document.body.style.overflow = 'scroll';
-      }
-  }, [displayResult])
+    return () => {
+      document.body.style.overflow = "scroll";
+    };
+  }, [displayResult]);
   return (
     <div className="containerforclass">
-      <h2 className="heading">
-        Quiz on {queData?.length > 0 ? quizCategory : "...."}
-      </h2>
+      <div className="heading">
+        <h2>Quiz on {queData?.length > 0 ? quizCategory : "...."}</h2>
+        <p>
+          <b>
+            Overall Time Left:{" "}
+            <span style={{ color: timer < 30 ? "red" : "green" }}>
+              {" "}
+              {timeString}{" "}
+            </span>
+          </b>
+        </p>
+      </div>
       {displayResult ? (
-        createPortal(<QuizResult marks={marks} totalmarks={queData?.length} onClick = {handleModalClose} quizCategory={quizCategory} />, document.getElementById("quizResultModal"))
+        createPortal(
+          <QuizResult
+            marks={marks}
+            totalmarks={queData?.length}
+            onClick={handleModalClose}
+            quizCategory={quizCategory}
+          />,
+          document.getElementById("quizResultModal"),
+        )
       ) : (
         <>
           <div className="question">
@@ -128,7 +166,7 @@ function Quiz() {
                     setSelectedopt(i + 1);
                     updateScore();
                   }} //when user click one of option, state update with option 1/2/3/4 which cause component re-render, now this time
-                //  one of the option get match with i+1 so that one option get checked
+                  //  one of the option get match with i+1 so that one option get checked
                 >
                   {" "}
                   {option}
