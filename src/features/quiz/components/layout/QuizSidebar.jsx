@@ -1,5 +1,5 @@
 import Styles from "./quizSidebar.module.css";
-import { NumberBtn } from "../ui/numberBtn";
+import { NumberBtn } from "../ui/NumberBtn";
 export function QuizSidebar ({data, setCurrentQue, handleOption}){
     return (
         <div className={Styles.sidebar}>
