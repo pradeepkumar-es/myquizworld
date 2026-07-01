@@ -1,0 +1,9 @@
+.qBtn{
+    /* padding: 10px; */
+    height: 100px;
+    width: 150px;
+    cursor: pointer;
+}
+.qBtn:hover{
+    background-color: aquamarine;
+}

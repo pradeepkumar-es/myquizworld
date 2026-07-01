@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import "./quiz.css";
 import { questions } from "../data/mockQuestions";
 import QuizResult from "./QuizResult";
+import { QuizSidebar } from "../components/layout/QuizSidebar";
 import { Button } from "../../../Components/ui/Button";
 import { quizAPI } from "../services/quizAPI";
 import { decodeHTML } from "../utils/decodeHTML";
@@ -27,7 +28,7 @@ function Quiz() {
   //timer
   const [timer, setTimer] = useState(150);
   useEffect(() => {
-    if(queData.length <=0 ) return; //start timer only when que data loaded
+    if (queData.length <= 0) return; //start timer only when que data loaded
     console.log("inside time");
     const intervalId = setInterval(() => {
       setTimer((t) => {
@@ -92,7 +93,6 @@ function Quiz() {
       setSelectedopt(0); //to be unchecked  next que option and avoid previous selected response
     }
   };
-
   const backQue = () => {
     if (currentQue > 0) {
       setCurrentQue((c) => c - 1);
@@ -119,75 +119,80 @@ function Quiz() {
     };
   }, [displayResult]);
   return (
-    <div className="containerforclass">
-      <div className="heading">
-        <h2>Quiz on {queData?.length > 0 ? quizCategory : "...."}</h2>
-        <p>
-          <b>
-            Overall Time Left:{" "}
-            <span style={{ color: timer < 30 ? "red" : "green" }}>
-              {" "}
-              {timeString}{" "}
-            </span>
-          </b>
-        </p>
+    <div className="quizContainer">
+      <div className="main">
+        <div className="heading">
+          <h2>Quiz on {queData?.length > 0 ? quizCategory : "...."}</h2>
+          <p>
+            <b>
+              Overall Time Left:{" "}
+              <span style={{ color: timer < 30 ? "red" : "green" }}>
+                {" "}
+                {timeString}{" "}
+              </span>
+            </b>
+          </p>
+        </div>
+        {displayResult ? (
+          createPortal(
+            <QuizResult
+              marks={marks}
+              totalmarks={queData?.length}
+              onClick={handleModalClose}
+              quizCategory={quizCategory}
+            />,
+            document.getElementById("quizResultModal"),
+          )
+        ) : (
+          <>
+            <div className="question">
+              {queData?.length > 0 ? (
+                <>
+                  <span>
+                    {currentQue + 1}/{queData?.length}:{" "}
+                  </span>
+                  {decodeHTML(queData?.[currentQue]?.question)}
+                </>
+              ) : (
+                "Loading...."
+              )}
+            </div>
+            <div className="option">
+              {options.map((option, i) => {
+                return (
+                  <button
+                    key={i}
+                    className={`optionbtn ${selectedopt === i + 1 ? "checked" : null}`} //here i+1 is used instead of i so that on options load, no options get checked
+                    onClick={() => {
+                      setSelectedopt(i + 1);
+                      updateScore();
+                    }} //when user click one of option, state update with option 1/2/3/4 which cause component re-render, now this time
+                    //  one of the option get match with i+1 so that one option get checked
+                  >
+                    {" "}
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="btn">
+              <Button
+                onClick={backQue}
+                isDisabled={currentQue === 0}
+                text="Back"
+              />
+              {currentQue === queData?.length - 1 ? (
+                <Button onClick={() => setDisplayResult(true)} text="Submit" />
+              ) : (
+                <Button onClick={nextQue} text="Next" />
+              )}
+            </div>
+          </>
+        )}
       </div>
-      {displayResult ? (
-        createPortal(
-          <QuizResult
-            marks={marks}
-            totalmarks={queData?.length}
-            onClick={handleModalClose}
-            quizCategory={quizCategory}
-          />,
-          document.getElementById("quizResultModal"),
-        )
-      ) : (
-        <>
-          <div className="question">
-            {queData?.length > 0 ? (
-              <>
-                <span>
-                  {currentQue + 1}/{queData?.length}:{" "}
-                </span>
-                {decodeHTML(queData?.[currentQue]?.question)}
-              </>
-            ) : (
-              "Loading...."
-            )}
-          </div>
-          <div className="option">
-            {options.map((option, i) => {
-              return (
-                <button
-                  key={i}
-                  className={`optionbtn ${selectedopt === i + 1 ? "checked" : null}`} //here i+1 is used instead of i so that on options load, no options get checked
-                  onClick={() => {
-                    setSelectedopt(i + 1);
-                    updateScore();
-                  }} //when user click one of option, state update with option 1/2/3/4 which cause component re-render, now this time
-                  //  one of the option get match with i+1 so that one option get checked
-                >
-                  {" "}
-                  {option}
-                </button>
-              );
-            })}
-          </div>
-          <div className="btn">
-            <Button
-              onClick={backQue}
-              isDisabled={currentQue === 0}
-              text="Back"
-            />
-            {currentQue === queData?.length - 1 ? (
-              <Button onClick={() => setDisplayResult(true)} text="Submit" />
-            ) : (
-              <Button onClick={nextQue} text="Next" />
-            )}
-          </div>
-        </>
-      )}
+      <div className="quizSidebar">
+        <QuizSidebar data = {queData} handleOption = {handleOption} setCurrentQue = {setCurrentQue}/>
+      </div>
     </div>
   );
 }

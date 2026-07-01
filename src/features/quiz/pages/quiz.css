@@ -1,56 +1,71 @@
-.containerforclass{
+.quizContainer {
     display: flex;
-    flex-direction: column;
-    padding: 100px;
-    /* background-color: blueviolet; */
-    border-radius: 10px;
-    margin: 25px 50px;
+    flex-direction: row;
+    height: 100vh;
 }
-.containerforclass .heading{
-    padding-bottom: 10px;
-    margin-bottom: 25px;
-    display: flex;
-    justify-content: space-around;
+.main {
+    width: 70%;
+  display: flex;
+  flex-direction: column;
+  /* padding: 100px; */
+  /* background-color: blueviolet; */
+  border-radius: 10px;
+  margin: 25px 50px;
+  border-right: 1px solid black ;
 }
-.containerforclass .question{
-    background-color:rgb(8, 39, 29);
-    padding: 15px 5px;
-    font-size: larger;
-}
-.containerforclass .option{
+.quizSidebar{
+    width: 30%;
+    height: 100%;
     background-color: aliceblue;
 }
-.containerforclass .option .optionbtn{
-    padding-left: 5px;
-    padding-top: 2px;
-    height: 50px;
-    /* width: 1003px; */
-    width: 100%;
-    font-size:large;
-    display: flex;
-    flex-direction:column;
-    text-align: start;
-    border-width: 1px 0px;
-    border-color: rgba(14, 14, 14, 0.32);
+.quizContainer .heading {
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-around;
+}
+.quizContainer .question {
+  background-color: rgb(8, 39, 29);
+  padding: 15px 5px;
+  font-size: larger;
+}
+.quizContainer .option {
+  background-color: aliceblue;
+}
+.quizContainer .option .optionbtn {
+  padding-left: 5px;
+  padding-top: 2px;
+  height: 50px;
+  /* width: 1003px; */
+  width: 100%;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  border-width: 1px 0px;
+  border-color: rgba(14, 14, 14, 0.32);
 }
 
-.containerforclass .btn{
-    display: flex;
-    background-color: aquamarine;
-    justify-content:space-between;
-    padding: 5px;
+.quizContainer .btn {
+  display: flex;
+  background-color: aquamarine;
+  justify-content: space-between;
+  padding: 5px;
 }
-.optionbtn:hover{
-    background-color: rgb(109, 109, 215);
-    color: white;
+.optionbtn:hover {
+  background-color: rgb(109, 109, 215);
+  color: white;
 }
-.checked{
-    background-color: blue;
-    color: white;
-    box-shadow: 2px;
+.checked {
+  background-color: blue;
+  color: white;
+  box-shadow: 2px;
 }
-@media only screen and (max-width:768px){
-    .containerforclass .heading{
+@media only screen and (max-width: 768px) {
+    .quizContainer{
         flex-direction: column;
     }
+  .quizContainer .heading {
+    flex-direction: column;
+  }
 }
