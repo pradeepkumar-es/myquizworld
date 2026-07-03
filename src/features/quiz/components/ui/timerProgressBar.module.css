@@ -1,0 +1,20 @@
+.progressBar {
+  background-color: aqua;
+  animation-name: loader;
+  animation-timing-function: linear;
+  animation-fill-mode:forwards;
+}
+@keyframes loader {
+  0% {
+    width: 100%;
+    border: 1px solid green;
+  }
+  50%{
+    width : 50%;
+    border: 1px solid yellow;
+  }
+  100% {
+    width: 0%;
+    border: 1px solid red;
+  }
+}

@@ -8,6 +8,7 @@ import { questions } from "../data/mockQuestions";
 import QuizResult from "./QuizResult";
 import { QuizSidebar } from "../components/layout/QuizSidebar";
 import { Button } from "../../../Components/ui/Button";
+import { TimerProgressBar } from "../components/ui/TimerProgressBar";
 import { quizAPI } from "../services/quizAPI";
 import { decodeHTML } from "../utils/decodeHTML";
 import { shuffleCollection } from "../utils/shuffleCollection";
@@ -145,13 +146,16 @@ function Quiz() {
           )
         ) : (
           <>
+            <TimerProgressBar key = {currentQue} timeLimit={150 / queData?.length} nextQue = {nextQue}/> {/*key is for restarting animation or remounting timer progress animation on next question */}
             <div className="question">
               {queData?.length > 0 ? (
                 <>
-                  <span>
-                    {currentQue + 1}/{queData?.length}:{" "}
-                  </span>
-                  {decodeHTML(queData?.[currentQue]?.question)}
+                  <p>
+                    <span>
+                      {currentQue + 1}/{queData?.length}:{" "}
+                    </span>
+                    {decodeHTML(queData?.[currentQue]?.question)}
+                  </p>
                 </>
               ) : (
                 "Loading...."
@@ -191,7 +195,11 @@ function Quiz() {
         )}
       </div>
       <div className="quizSidebar">
-        <QuizSidebar data = {queData} handleOption = {handleOption} setCurrentQue = {setCurrentQue}/>
+        <QuizSidebar
+          data={queData}
+          handleOption={handleOption}
+          setCurrentQue={setCurrentQue}
+        />
       </div>
     </div>
   );
