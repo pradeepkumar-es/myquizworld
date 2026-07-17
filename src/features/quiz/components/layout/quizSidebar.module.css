@@ -6,3 +6,16 @@
     flex-direction:row;
     flex-wrap: wrap;
 }
+.qNumHeader{
+    color: white;
+    background-color: blue;
+    font-weight: bold;
+    padding: 10px;
+}
+.statusBox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    padding: 5px;
+}

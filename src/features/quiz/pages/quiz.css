@@ -42,8 +42,7 @@
   display: flex;
   flex-direction: column;
   text-align: start;
-  border-width: 1px 0px;
-  border-color: rgba(14, 14, 14, 0.32);
+  border: 1px solid rgb(192, 192, 192);
 }
 
 .quizContainer .btn {
@@ -52,9 +51,11 @@
   justify-content: space-between;
   padding: 5px;
 }
-.optionbtn:hover {
-  background-color: rgb(109, 109, 215);
-  color: white;
+ .quizContainer .option .optionbtn:hover {
+  /* background-color: rgb(109, 109, 215); */
+  border: 1px solid #8cf108;
+  cursor: pointer;
+  color: black;
 }
 .checked {
   background-color: blue;

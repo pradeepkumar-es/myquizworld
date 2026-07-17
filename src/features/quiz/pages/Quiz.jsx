@@ -12,13 +12,25 @@ import { TimerProgressBar } from "../components/ui/TimerProgressBar";
 import { quizAPI } from "../services/quizAPI";
 import { decodeHTML } from "../utils/decodeHTML";
 import { shuffleCollection } from "../utils/shuffleCollection";
+import { calculateSolvedNum } from "../utils/calculateSolvedNum";
 function Quiz() {
   const [queData, setQueData] = useState([]);
   const [currentQue, setCurrentQue] = useState(0);
   const [marks, setMarks] = useState(0);
-  const [selectedopt, setSelectedopt] = useState(0);
+  const [queResponse, setQueResponse] = useState([
+    // {
+    //   selectedopt: 0, // 0 for not selected, greater than it is selected
+    //   isSolved: false,
+    // },
+  ]);
+  // const [selectedopt, setSelectedopt] = useState(0);
   const [displayResult, setDisplayResult] = useState(false);
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState([
+    // [opt1, opt2, ....]
+  ]);
+  const [visit, setVisit] = useState([]);
+
+  let solvedNum = calculateSolvedNum(queResponse);
   const hasFetched = useRef(false); //to stop strict mode to re-run api too frequently to avoid api block in development mode
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryNum = searchParams.get("category"); //get categoryNum from current url's query string
@@ -27,7 +39,7 @@ function Quiz() {
   const quizCategory = decodeHTML(queData?.[currentQue]?.category);
 
   //timer
-  const [timer, setTimer] = useState(150);
+  const [timer, setTimer] = useState(1150);
   useEffect(() => {
     if (queData.length <= 0) return; //start timer only when que data loaded
     console.log("inside time");
@@ -55,8 +67,19 @@ function Quiz() {
     ];
     const decodedOption = option.map((val) => decodeHTML(val));
     const shuffledOptions = shuffleCollection(decodedOption);
-    setOptions(shuffledOptions);
+    // setOptions(shuffledOptions);
+    if (queResponse[currentQue]?.isSolved) {
+      return;
+    } else {
+      setOptions([...options, [...shuffledOptions]]);
+    }
   };
+
+  useEffect(() => {
+    if (queData.length > 0) {
+      handleOption(queData, currentQue); //keep updating option on new question
+    }
+  }, [queData, currentQue]);
 
   useEffect(() => {
     if (hasFetched.current) return;
@@ -74,7 +97,7 @@ function Quiz() {
         const data = await quizAPI(apiURL, categoryNum);
         // if (!ignore) {
         setQueData(data);
-        handleOption(data, 0);
+        // handleOption(data, 0);
         // }
         console.log(data);
       } catch (err) {
@@ -87,23 +110,47 @@ function Quiz() {
     //   ignore = true;
     // };
   }, []);
+
   const nextQue = () => {
     if (currentQue < queData.length - 1) {
       setCurrentQue((c) => c + 1); //it update index later, so to avoid current index used to calculate options for next,
-      handleOption(queData, currentQue + 1); //send 1 index advanced, to fetch options correctly with questions
-      setSelectedopt(0); //to be unchecked  next que option and avoid previous selected response
+      // handleOption(queData, currentQue + 1); //send 1 index advanced, to fetch options correctly with questions
+      // setSelectedopt(0); //to be unchecked  next que option and avoid previous selected response
+      // setIsSolved(false);
     }
   };
   const backQue = () => {
     if (currentQue > 0) {
       setCurrentQue((c) => c - 1);
-      handleOption(queData, currentQue - 1);
+      // handleOption(queData, currentQue - 1);
     }
   };
 
-  const updateScore = () => {
-    if (options[selectedopt] === queData[currentQue].correct_answer) {
-      setMarks(marks + 1);
+  const updateScore = (optionIndex) => {
+    // optionIndex is zero-based
+    if (!queData[currentQue]) return;
+    const selectedAnswer = options[currentQue]?.[optionIndex];
+    const correctAnswer = decodeHTML(queData[currentQue].correct_answer);
+
+    if (
+      (queResponse[currentQue]?.isSolved ?? false) &&
+      selectedAnswer === correctAnswer
+    ) {
+      console.log("ignore score");
+      return; // ignore when already visited and user clicked the same correct option
+    }
+
+    if (
+      (queResponse[currentQue]?.isSolved ?? false) &&
+      selectedAnswer !== correctAnswer
+    ) {
+      console.log("update score"); //if already visited and selected answer wrong, then update score to reduce mark
+      setMarks((m) => m - 1);
+    }
+
+    if (selectedAnswer === correctAnswer) {
+      console.log("update score");
+      setMarks((m) => m + 1);
     }
   };
   const handleModalClose = () => {
@@ -146,7 +193,12 @@ function Quiz() {
           )
         ) : (
           <>
-            <TimerProgressBar key = {currentQue} timeLimit={150 / queData?.length} nextQue = {nextQue}/> {/*key is for restarting animation or remounting timer progress animation on next question */}
+            <TimerProgressBar
+              key={currentQue}
+              timeLimit={150 / queData?.length}
+              nextQue={nextQue}
+            />{" "}
+            {/*key is for restarting animation or remounting timer progress animation on next question */}
             <div className="question">
               {queData?.length > 0 ? (
                 <>
@@ -162,14 +214,36 @@ function Quiz() {
               )}
             </div>
             <div className="option">
-              {options.map((option, i) => {
+              {options[currentQue]?.map((option, i) => {
                 return (
                   <button
                     key={i}
-                    className={`optionbtn ${selectedopt === i + 1 ? "checked" : null}`} //here i+1 is used instead of i so that on options load, no options get checked
+                    className={`optionbtn ${queResponse[currentQue]?.selectedopt === i + 1 ? "checked" : null}`} //here i+1 is used instead of i so that on options load, no options get checked
                     onClick={() => {
-                      setSelectedopt(i + 1);
-                      updateScore();
+                      // setSelectedopt(i + 1);
+                      // if (queResponse[currentQue]?.isSolved) {
+                      //   setQueResponse()
+                      //   queResponse[currentQue].selectedopt = i + 1;
+                      // } else {
+                      setQueResponse(
+                        (prev) => {
+                          const updated = [...prev];
+                          updated[currentQue] = {
+                            selectedopt: i + 1,
+                            isSolved: true,
+                          };
+                          updateScore(i); // zero-based option index
+                          return updated;
+                        },
+                        // [
+                        //   ...queResponse,
+                        //   {
+                        //     selectedopt: i + 1, // 0 for not selected, greater than it, is selected
+                        //     isSolved: true,
+                        //   },
+                        // ]
+                      );
+                      // }
                     }} //when user click one of option, state update with option 1/2/3/4 which cause component re-render, now this time
                     //  one of the option get match with i+1 so that one option get checked
                   >
@@ -197,8 +271,8 @@ function Quiz() {
       <div className="quizSidebar">
         <QuizSidebar
           data={queData}
-          handleOption={handleOption}
           setCurrentQue={setCurrentQue}
+          solved={solvedNum}
         />
       </div>
     </div>
