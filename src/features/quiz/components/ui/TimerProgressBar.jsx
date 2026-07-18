@@ -5,7 +5,7 @@ export function TimerProgressBar({timeLimit, nextQue}){
     useEffect(()=>{
         let time = timeLimit
       let timeoutId =  setTimeout(()=>{
-            // nextQue(); //call next Que on each question timeLimit 
+            nextQue(); //call next Que on each question timeLimit 
         }, time*1000)
         return () =>{
             clearTimeout(timeoutId);

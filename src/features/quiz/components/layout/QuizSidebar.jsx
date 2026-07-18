@@ -33,7 +33,7 @@ function StatusBox({ text, color, value }) {
     margin:"5px",
     border: "none",
     borderRadius:"5px",
-    padding:"5px",
+    // padding:"5px",
     backgroundColor:color,
     fontWeight:"bold",
   };
