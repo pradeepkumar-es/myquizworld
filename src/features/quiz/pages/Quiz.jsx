@@ -13,6 +13,7 @@ import { quizAPI } from "../services/quizAPI";
 import { decodeHTML } from "../utils/decodeHTML";
 import { shuffleCollection } from "../utils/shuffleCollection";
 import { calculateSolvedNum } from "../utils/calculateSolvedNum";
+import { calculateVisitedNum } from "../utils/calculateVisitedNum";
 function Quiz() {
   const [queData, setQueData] = useState([]);
   const [currentQue, setCurrentQue] = useState(0);
@@ -28,9 +29,10 @@ function Quiz() {
   const [options, setOptions] = useState([
     // [opt1, opt2, ....]
   ]);
-  const [visit, setVisit] = useState([]);
-
-  let solvedNum = calculateSolvedNum(queResponse);
+  const [visit, setVisit] = useState([true, ...(new Array(9).fill(false))]);
+  const visitedNum = calculateVisitedNum(visit);
+  const nonVistedNum = 10 - visitedNum;
+  const solvedNum = calculateSolvedNum(queResponse);
   const hasFetched = useRef(false); //to stop strict mode to re-run api too frequently to avoid api block in development mode
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryNum = searchParams.get("category"); //get categoryNum from current url's query string
@@ -116,13 +118,26 @@ function Quiz() {
       setCurrentQue((c) => c + 1); //it update index later, so to avoid current index used to calculate options for next,
       // handleOption(queData, currentQue + 1); //send 1 index advanced, to fetch options correctly with questions
       // setSelectedopt(0); //to be unchecked  next que option and avoid previous selected response
-      // setIsSolved(false);
+      setVisit(pre =>{
+        if(pre[currentQue + 1]){ //already visit
+          return pre;
+        }else{
+         return [...pre, pre[currentQue + 1] = true]
+        }
+      });
     }
   };
   const backQue = () => {
     if (currentQue > 0) {
       setCurrentQue((c) => c - 1);
       // handleOption(queData, currentQue - 1);
+            setVisit(pre =>{
+        if(pre[currentQue + 1]){ //+1=> bcz of here new currentQue i scheduled to update in next render, but we want in current time already visit
+          return pre;
+        }else{
+         return [...pre, pre[currentQue + 1] = true]
+        }
+      });
     }
   };
 
@@ -273,6 +288,9 @@ function Quiz() {
           data={queData}
           setCurrentQue={setCurrentQue}
           solved={solvedNum}
+          setVisit = {setVisit}
+          visit = {visitedNum}
+          nonVisit = {nonVistedNum}
         />
       </div>
     </div>
