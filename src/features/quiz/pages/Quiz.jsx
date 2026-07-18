@@ -286,11 +286,14 @@ function Quiz() {
       <div className="quizSidebar">
         <QuizSidebar
           data={queData}
+          currentQue = {currentQue}
           setCurrentQue={setCurrentQue}
           solved={solvedNum}
           setVisit = {setVisit}
-          visit = {visitedNum}
+          visitedNum = {visitedNum}
+          visit = {visit}
           nonVisit = {nonVistedNum}
+          queResponse = {queResponse}
         />
       </div>
     </div>

@@ -1,11 +1,11 @@
 import Styles from "./quizSidebar.module.css";
 import { NumberBtn } from "../ui/NumberBtn";
-export function QuizSidebar({ data, setCurrentQue,visit, nonVisit, setVisit, solved }) {
+export function QuizSidebar({ data, currentQue, setCurrentQue, visitedNum, visit, nonVisit, setVisit, solved, queResponse }) {
   return (
     <div className={Styles.sidebar}>
       <div className={Styles.statusBox}>
         <StatusBox value = {solved} text="Solved" color = "green" />
-        <StatusBox value = {visit} text="Visited" color = "orange" />
+        <StatusBox value = {visitedNum} text="Visited" color = "orange" />
         <StatusBox value = {nonVisit} text="Not Visited" color = "#EFEFEF" />
       </div>
       <>
@@ -18,6 +18,9 @@ export function QuizSidebar({ data, setCurrentQue,visit, nonVisit, setVisit, sol
               setCurrentQue={setCurrentQue}
               setVisit = {setVisit}
               srNum={index + 1}
+              currentQue = {currentQue}
+              queResponse = {queResponse}
+              visit = {visit}
             />
           ))}
         </div>
