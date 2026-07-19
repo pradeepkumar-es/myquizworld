@@ -72,9 +72,13 @@ function Quiz() {
     // setOptions(shuffledOptions);
     if (queResponse[currentQue]?.isSolved) {
       return;
-    } else {
-      setOptions([...options, [...shuffledOptions]]);
     }
+
+    setOptions((prevOptions) => {
+      const nextOptions = [...prevOptions];
+      nextOptions[queIndex] = [...shuffledOptions];
+      return nextOptions;
+    });
   };
 
   useEffect(() => {
@@ -160,7 +164,13 @@ function Quiz() {
       selectedAnswer !== correctAnswer
     ) {
       console.log("update score"); //if already visited and selected answer wrong, then update score to reduce mark
-      setMarks((m) => m - 1);
+      setMarks((m) =>{
+        if(m>0){
+          return m - 1;
+        }else{
+          return m;
+        }
+      });
     }
 
     if (selectedAnswer === correctAnswer) {
