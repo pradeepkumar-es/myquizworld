@@ -29,11 +29,11 @@ export function NumberBtn({
           setCurrentQue(queIndex);
           setVisit((pre) => {
             if (pre[queIndex]) {
-              //already visit
               return pre;
-            } else {
-              return [...pre, (pre[queIndex] = true)];
             }
+            const next = [...pre];
+            next[queIndex] = true;
+            return next;
           });
         }}
         className={Styles.qBtn}

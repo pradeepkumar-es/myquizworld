@@ -119,28 +119,29 @@ function Quiz() {
 
   const nextQue = () => {
     if (currentQue < queData.length - 1) {
-      setCurrentQue((c) => c + 1); //it update index later, so to avoid current index used to calculate options for next,
-      // handleOption(queData, currentQue + 1); //send 1 index advanced, to fetch options correctly with questions
-      // setSelectedopt(0); //to be unchecked  next que option and avoid previous selected response
-      setVisit(pre =>{
-        if(pre[currentQue + 1]){ //already visit
+      setCurrentQue((c) => c + 1);
+      setVisit((pre) => {
+        const nextIndex = currentQue + 1;
+        if (pre[nextIndex]) {
           return pre;
-        }else{
-         return [...pre, pre[currentQue + 1] = true]
         }
+        const next = [...pre];
+        next[nextIndex] = true;
+        return next;
       });
     }
   };
   const backQue = () => {
     if (currentQue > 0) {
       setCurrentQue((c) => c - 1);
-      // handleOption(queData, currentQue - 1);
-            setVisit(pre =>{
-        if(pre[currentQue + 1]){ //+1=> bcz of here new currentQue i scheduled to update in next render, but we want in current time already visit
+      setVisit((pre) => {
+        const prevIndex = currentQue - 1;
+        if (pre[prevIndex]) {
           return pre;
-        }else{
-         return [...pre, pre[currentQue + 1] = true]
         }
+        const next = [...pre];
+        next[prevIndex] = true;
+        return next;
       });
     }
   };
