@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -29,11 +29,10 @@ function Quiz() {
   const [options, setOptions] = useState([
     // [opt1, opt2, ....]
   ]);
-  const [visit, setVisit] = useState([true, ...(new Array(9).fill(false))]);
-  const visitedNum = calculateVisitedNum(visit);
+  const [visit, setVisit] = useState([true, ...new Array(9).fill(false)]);
+  const visitedNum = queData.length > 0 ? calculateVisitedNum(visit) : 0;
   const nonVistedNum = 10 - visitedNum;
   const solvedNum = calculateSolvedNum(queResponse);
-  const hasFetched = useRef(false); //to stop strict mode to re-run api too frequently to avoid api block in development mode
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryNum = searchParams.get("category"); //get categoryNum from current url's query string
   const navigate = useNavigate(); //return a function
@@ -42,6 +41,9 @@ function Quiz() {
 
   //timer
   const [timer, setTimer] = useState(1150);
+  const [showTimerBar, setShowTimerBar] = useState(true);
+  const [difficulty, setDifficulty] = useState("random");
+  console.log(difficulty);
   useEffect(() => {
     if (queData.length <= 0) return; //start timer only when que data loaded
     console.log("inside time");
@@ -88,34 +90,43 @@ function Quiz() {
   }, [queData, currentQue]);
 
   useEffect(() => {
-    if (hasFetched.current) return;
-    hasFetched.current = true;
+    let isMounted = true;
 
-    // let ignore = false;
     console.log("Effect is running");
-    let apiURL =
-      categoryNum > 8
-        ? `https://opentdb.com/api.php?amount=10&category=${categoryNum}&type=multiple`
-        : "https://opentdb.com/api.php?amount=10&type=multiple"; //for random category there is no category params in api
+    const apiURL = Number(categoryNum) > 8
+      ? difficulty !== "random"
+        ? `https://opentdb.com/api.php?amount=10&category=${categoryNum}&difficulty=${difficulty}&type=multiple`
+        : `https://opentdb.com/api.php?amount=10&category=${categoryNum}&type=multiple`
+      : "https://opentdb.com/api.php?amount=10&type=multiple";
 
     async function loadData() {
       try {
+        setQueData([]);
+        setCurrentQue(0);
+        setMarks(0);
+        setQueResponse([]);
+        setOptions([]);
+        setVisit([true, ...new Array(9).fill(false)]);
+        setTimer(1150);
+        setDisplayResult(false);
+
         const data = await quizAPI(apiURL, categoryNum);
-        // if (!ignore) {
-        setQueData(data);
-        // handleOption(data, 0);
-        // }
+        if (!isMounted) return;
+
+        setQueData(data ?? []);
         console.log(data);
       } catch (err) {
         console.log("Error:", err.message);
       }
     }
+
     console.log("loading");
     loadData();
-    // return () => {
-    //   ignore = true;
-    // };
-  }, []);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [categoryNum, difficulty]);
 
   const nextQue = () => {
     if (currentQue < queData.length - 1) {
@@ -165,10 +176,10 @@ function Quiz() {
       selectedAnswer !== correctAnswer
     ) {
       console.log("update score"); //if already visited and selected answer wrong, then update score to reduce mark
-      setMarks((m) =>{
-        if(m>0){
+      setMarks((m) => {
+        if (m > 0) {
           return m - 1;
-        }else{
+        } else {
           return m;
         }
       });
@@ -192,6 +203,12 @@ function Quiz() {
       document.body.style.overflow = "scroll";
     };
   }, [displayResult]);
+
+  //handle Question Difficulty
+  function handleDifficulty(e){
+    setDifficulty(e.target.value)
+    // navigate(0);
+  }
   return (
     <div className="quizContainer">
       <div className="main">
@@ -219,11 +236,38 @@ function Quiz() {
           )
         ) : (
           <>
-            <TimerProgressBar
-              key={currentQue}
-              timeLimit={150 / queData?.length}
-              nextQue={nextQue}
-            />{" "}
+          <div>
+            <label htmlFor="difficulyLevel">
+              Set Difficulty :{" "}
+              <select name="difficulyLevel" id="difficulyLevel" className="level"
+              value = {difficulty}
+              onChange={handleDifficulty}
+              >
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard"> Hard</option>
+                <option value="random">Random</option>
+              </select>
+            </label>
+            <span style={{paddingLeft:"25px"}}>Current Difficulty: <span style={{fontWeight:"bold"}}>{queData?.[currentQue]?.difficulty.toUpperCase()}</span></span>
+            </div>
+            <label htmlFor="timerBar">
+              <input
+                id="timerBar"
+                name="timerBar"
+                type="checkbox"
+                checked={showTimerBar}
+                onChange={(e) => setShowTimerBar(e.target.checked)}
+              />{" "}
+              {showTimerBar ? "Hide" : "Set"} Timer Bar for Each Question
+            </label>
+            {showTimerBar && (
+              <TimerProgressBar
+                key={currentQue}
+                timeLimit={150 / queData?.length}
+                nextQue={nextQue}
+              />
+            )}{" "}
             {/*key is for restarting animation or remounting timer progress animation on next question */}
             <div className="question">
               {queData?.length > 0 ? (
@@ -297,14 +341,14 @@ function Quiz() {
       <div className="quizSidebar">
         <QuizSidebar
           data={queData}
-          currentQue = {currentQue}
+          currentQue={currentQue}
           setCurrentQue={setCurrentQue}
           solved={solvedNum}
-          setVisit = {setVisit}
-          visitedNum = {visitedNum}
-          visit = {visit}
-          nonVisit = {nonVistedNum}
-          queResponse = {queResponse}
+          setVisit={setVisit}
+          visitedNum={visitedNum}
+          visit={visit}
+          nonVisit={nonVistedNum}
+          queResponse={queResponse}
         />
       </div>
     </div>

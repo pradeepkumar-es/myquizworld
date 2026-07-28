@@ -1,51 +1,83 @@
-export const questions=[
-    {Question: "Who is PM of India",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
-     Answer:1
-    },
-    {Question: "Who is CM of UP",
-     option:['Narendra Modi','Rahul Gandhi','Yogi Aditya Nath','Rajnath Singh'],
-     Answer:3
-    },
-    {Question: "Who is President of India",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Droupadi Murmu'],
-     Answer:4
-    },
-    {Question: "Who is from Congress Party",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
-     Answer:2
-    },
-    {Question: "Who is PM of India",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
-     Answer:1
-    },
-    {Question: "Who is PM of India",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
-     Answer:1
-    },
-    {Question: "Who is PM of India",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
-     Answer:1
-    },
-    {Question: "Who is PM of India",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
-     Answer:1
-    },
-    {Question: "Who is PM of India",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
-     Answer:1
-    },
-    {Question: "Who is PM of India",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
-     Answer:1
-    },
-    {Question: "Who is PM of India",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
-     Answer:1
-    },
-    {Question: "Who is PM of India",
-     option:['Narendra Modi','Rahul Gandhi','Manmohan Singh','Rajnath Singh'],
-     Answer:1
-    },
+export const questions = [
+  {
+    category: "General Knowledge",
+    type: "multiple",
+    difficulty: "easy",
+    question: "Who is the Prime Minister of India?",
+    correct_answer: "Narendra Modi",
+    incorrect_answers: ["Rahul Gandhi", "Manmohan Singh", "Rajnath Singh"],
+  },
+  {
+    category: "General Knowledge",
+    type: "multiple",
+    difficulty: "easy",
+    question: "Who is the Chief Minister of Uttar Pradesh?",
+    correct_answer: "Yogi Adityanath",
+    incorrect_answers: ["Narendra Modi", "Rahul Gandhi", "Rajnath Singh"],
+  },
+  {
+    category: "General Knowledge",
+    type: "multiple",
+    difficulty: "easy",
+    question: "Who is the President of India?",
+    correct_answer: "Droupadi Murmu",
+    incorrect_answers: ["Narendra Modi", "Rahul Gandhi", "Manmohan Singh"],
+  },
+  {
+    category: "Politics",
+    type: "multiple",
+    difficulty: "medium",
+    question: "Which party is led by Rahul Gandhi?",
+    correct_answer: "Indian National Congress",
+    incorrect_answers: ["Bharatiya Janata Party", "Aam Aadmi Party", "Samajwadi Party"],
+  },
+  {
+    category: "Science",
+    type: "multiple",
+    difficulty: "easy",
+    question: "What is the chemical symbol for water?",
+    correct_answer: "H2O",
+    incorrect_answers: ["O2", "CO2", "NaCl"],
+  },
+  {
+    category: "Science",
+    type: "multiple",
+    difficulty: "medium",
+    question: "Which planet is known as the Red Planet?",
+    correct_answer: "Mars",
+    incorrect_answers: ["Venus", "Mercury", "Jupiter"],
+  },
+  {
+    category: "History",
+    type: "multiple",
+    difficulty: "medium",
+    question: "In which year did India gain independence?",
+    correct_answer: "1947",
+    incorrect_answers: ["1939", "1950", "1962"],
+  },
+  {
+    category: "Geography",
+    type: "multiple",
+    difficulty: "easy",
+    question: "Which is the largest ocean on Earth?",
+    correct_answer: "Pacific Ocean",
+    incorrect_answers: ["Indian Ocean", "Atlantic Ocean", "Arctic Ocean"],
+  },
+  {
+    category: "Sports",
+    type: "multiple",
+    difficulty: "easy",
+    question: "How many players are on a soccer team on the field?",
+    correct_answer: "11",
+    incorrect_answers: ["9", "10", "12"],
+  },
+  {
+    category: "Entertainment",
+    type: "multiple",
+    difficulty: "easy",
+    question: "Who wrote the play Romeo and Juliet?",
+    correct_answer: "William Shakespeare",
+    incorrect_answers: ["Charles Dickens", "Jane Austen", "Mark Twain"],
+  },
 ];
 

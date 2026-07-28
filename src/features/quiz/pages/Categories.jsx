@@ -15,7 +15,7 @@ const categories = ["Mixed Category","General Knowledge", "Entertainment: Books"
   "Entertainment: Board Games", "Science & Nature", "Science: Computers", "Science: Mathematics", "Mythology", 
   "Geography", "History", "Politics", "Arts", "Celebrities", "Animals", "Vehicels", "Entertainment: Comics",
   "Science: Gadgets", "Entertainment: Japnese Anime & Manga", "Entertainment: Cartoon & Animations"
- ] //don't change the order, from api, category number is 9 to 32 (for General Knowledge to Cartoon & Animation)
+ ] //don't change the order; from api, category number is 9 to 32 (for General Knowledge to Cartoon & Animation)
 
  async function handleCategory(url){ //here this is called so that quiz data get loaded and cached and whenever
                                      //quiz page display, it get from cached memory for particular categpry
