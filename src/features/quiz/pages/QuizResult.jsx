@@ -1,26 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Styles from "./result.module.css";
 import { Button } from "../../../Components/ui/Button";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { decodeHTML } from "../utils/decodeHTML";
+import { shuffleCollection } from "../utils/shuffleCollection";
 function QuizResult({
   marks,
   totalmarks,
   queData,
   options,
+  nonVistedNum,
   queResponse,
   onClick,
   quizCategory,
 }) {
-  console.log(options);
+  console.log(options.length);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [allOptions, setAllOptions] = useState([]);
   const navigate = useNavigate();
   function handleRestart(e) {
     e.stopPropagation();
     navigate(0); //0: go in same location, number represent go to x steps back or forward of browser history depending on sign before number
   }
+
+  //set options for questions where user has not visited that questions
+  useEffect(()=>{
+      let allOption = [];
+  for(let i = 0; i < options.length; i++){
+    // console.log(options[i])
+        if (options[i]) {
+        //if it exist and not undefined return the same content
+        allOption.push(options[i]);
+      } else {
+        //if undefined
+        // console.log(option)
+        const shuffledOption = shuffleCollection([
+          queData[i].correct_answer,
+          ...queData[i].incorrect_answers,
+        ]);
+        const decodedOption = shuffledOption.map((option) =>
+          decodeHTML(option),
+        );
+        allOption.push(decodedOption);
+      }
+  }
+  setAllOptions(allOption);
+  },[])
   return (
     <div className={Styles.modalWrapper} onClick={onClick}>
       {" "}
@@ -43,7 +70,7 @@ function QuizResult({
         {isDetailOpen && (
           <DetailedResult
             queData={queData}
-            options={options}
+            options={allOptions}
             queResponse={queResponse}
           />
         )}
@@ -56,7 +83,7 @@ function QuizResult({
   );
 }
 function DetailedResult({ queData, options, queResponse }) {
-  console.log(queResponse);
+  console.log(options);
   return (
     <div className={Styles.analytics}>
       {queData.map((data, i) => {
@@ -67,13 +94,24 @@ function DetailedResult({ queData, options, queResponse }) {
             </p>
             <div className={Styles.options}>
               {options[i].map((option, j) => {
-                return (<div className={Styles.option}
-                  style={{
-                    //if selectedopt is correct then green background, if false, red background, other option as white
-                    backgroundColor:((queResponse[i]?.selectedopt === j+1) && decodeHTML(data.correct_answer)===option)?"green":(queResponse[i]?.selectedopt === j+1)?"red":"white",
-                    border:`3px solid ${decodeHTML(data.correct_answer)===option?"green":"gray"}`
-                  }}
-                >{option}</div>);
+                return (
+                  <div
+                    className={Styles.option}
+                    style={{
+                      //if selectedopt is correct then green background, if false, red background, other option as white
+                      backgroundColor:
+                        queResponse[i]?.selectedopt === j + 1 &&
+                        decodeHTML(data.correct_answer) === option
+                          ? "green"
+                          : queResponse[i]?.selectedopt === j + 1
+                            ? "red"
+                            : "white",
+                      border: `3px solid ${decodeHTML(data.correct_answer) === option ? "green" : "gray"}`,
+                    }}
+                  >
+                    {option}
+                  </div>
+                );
               })}
             </div>
             <hr />

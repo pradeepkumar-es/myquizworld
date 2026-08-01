@@ -233,6 +233,7 @@ function Quiz() {
               queData = {queData}
               options = {options}
               queResponse = {queResponse}
+              nonVistedNum = {nonVistedNum}
               onClick={handleModalClose}
               quizCategory={quizCategory}
             />,
