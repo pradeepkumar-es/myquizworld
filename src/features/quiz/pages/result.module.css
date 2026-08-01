@@ -13,13 +13,14 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: 300px;
-  width: 500px;
+  width: min(500px, calc(100vw - 24px));
+  max-height: 80vh;
   padding: 10px;
   border-radius: 10px;
   border: 2px solid rgb(177, 172, 172);
   background-color: white;
   color: black;
+  overflow: hidden;
 }
 .closeModal {
   text-align: right;
@@ -37,4 +38,32 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.analytics{
+  text-align: left;
+  max-height: 45vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.queInfo{
+  padding-top: 15px;
+}
+.question{
+  background-color: #d2fdef;
+  padding: 5PX 0px;
+}
+
+.analytics::-webkit-scrollbar {
+  width: 8px;
+}
+
+.analytics::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border-radius: 8px;
+}
+
+.analytics::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 8px;
 }

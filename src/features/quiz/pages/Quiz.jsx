@@ -29,6 +29,7 @@ function Quiz() {
   const [options, setOptions] = useState([
     // [opt1, opt2, ....]
   ]);
+  console.log(options)
   const [visit, setVisit] = useState([true, ...new Array(9).fill(false)]);
   const visitedNum = queData.length > 0 ? calculateVisitedNum(visit) : 0;
   const nonVistedNum = 10 - visitedNum;
@@ -229,6 +230,9 @@ function Quiz() {
             <QuizResult
               marks={marks}
               totalmarks={queData?.length}
+              queData = {queData}
+              options = {options}
+              queResponse = {queResponse}
               onClick={handleModalClose}
               quizCategory={quizCategory}
             />,
