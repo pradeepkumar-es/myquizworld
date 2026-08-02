@@ -1,25 +1,44 @@
-.sidebar{
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.sidebar {
+  color: #0f172a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
 }
-.qNumbers{
-    display: flex;
-    /* flex-direction:row; */
-    justify-content: center;
-    flex-wrap: wrap;
+
+.qNumbers {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
-.qNumHeader{
-    color: white;
-    background-color: blue;
-    font-weight: bold;
-    padding: 10px;
+
+.qNumHeader {
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  font-weight: 700;
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-align: center;
 }
-.statusBox{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-    padding: 5px;
+
+.statusBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 4px 0;
+}
+
+.statusBox > div {
+  border-radius: 10px !important;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  min-width: 90px;
+  color: #0f172a;
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }

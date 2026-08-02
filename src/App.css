@@ -1,12 +1,32 @@
-*{
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color:#000080;
-  color: white;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef4ff 100%);
+  color: #0f172a;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
 }
-.app{
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;

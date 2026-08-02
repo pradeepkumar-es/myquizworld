@@ -1,82 +1,181 @@
+/*
+  Overall quiz layout wrapper.
+  This keeps the main quiz panel and the side question navigator in a clean two-column layout.
+  The container is centered and capped to a readable max-width for better desktop presentation.
+*/
 .quizContainer {
-    display: flex;
-    flex-direction: row;
-    /* height: 100vh; */
+  display: flex;
+  gap: 28px;
+  max-width: 1280px;
+  width: 100%;
+  margin: 32px auto;
+  padding: 0 24px 40px;
+  align-items: flex-start;
 }
+
+/*
+  Main question panel.
+  This is the central area where the current question, options, and navigation controls live.
+*/
 .main {
-    width: 70%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 25px 50px;
-  /* background-color: blueviolet; */
-  border-radius: 10px;
-  border-right: 1px solid black ;
-}
-.quizSidebar{
-    width: 30%;
-    height: 100%;
-    background-color: aliceblue;
-}
-.level{
-  width: 100px;
-  color: black;
-}
-.quizContainer .heading {
-  padding-bottom: 10px;
-  margin-bottom: 25px;
-  display: flex;
-  justify-content: space-around;
-}
-.quizContainer .question {
-  background-color: rgb(8, 39, 29);
-  padding: 15px 5px;
-  font-size: larger;
-}
-.quizContainer .option {
-  background-color: aliceblue;
-}
-.quizContainer .option .optionbtn {
-  padding-left: 5px;
-  padding-top: 2px;
-  height: 50px;
-  /* width: 1003px; */
-  width: 100%;
-  font-size: large;
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-  border: 1px solid rgb(192, 192, 192);
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
 }
 
+/*
+  Sidebar for quick question navigation.
+  This panel shows progress stats and lets users jump to any question directly.
+*/
+.quizSidebar {
+  width: 300px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 20px 18px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+}
+
+/*
+  Difficulty selector styling.
+  Keeps the dropdown consistent with the app theme and readable on both desktop and mobile.
+*/
+.level {
+  width: 150px;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-weight: 600;
+}
+
+/*
+  Header row for the active quiz.
+  Contains the quiz title and timer summary.
+*/
+.quizContainer .heading {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.quizContainer .heading h2 {
+  color: #0f172a;
+  font-size: clamp(1.5rem, 2vw, 2.1rem);
+}
+
+/*
+  Question card styling.
+  This visually distinguishes the current problem from the rest of the interface.
+*/
+.quizContainer .question {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 16px;
+  padding: 20px 18px;
+  font-size: 1.08rem;
+  color: #0f172a;
+  margin: 18px 0;
+  line-height: 1.6;
+}
+
+/*
+  Options stack.
+  Each option sits in a vertical list with space between choices for easier interaction.
+*/
+.quizContainer .option {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: transparent;
+}
+
+/*
+  Individual answer buttons.
+  These are the clickable choices shown to the user. They get a highlight on hover and on selection.
+*/
+.quizContainer .option .optionbtn {
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quizContainer .option .optionbtn:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.08);
+  transform: translateY(-1px);
+}
+
+/*
+  Navigation buttons section.
+  Back / Next / Submit controls are grouped cleanly in one row.
+*/
 .quizContainer .btn {
   display: flex;
-  background-color: aquamarine;
   justify-content: space-between;
-  padding: 5px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
 }
- .quizContainer .option .optionbtn:hover {
-  /* background-color: rgb(109, 109, 215); */
-  border: 1px solid #8cf108;
-  cursor: pointer;
-  color: black;
-}
+
+/*
+  Selected answer style.
+  Applied when the user selects an option. The blue look helps indicate the active choice.
+*/
 .checked {
-  background-color: blue;
-  color: white;
-  box-shadow: 2px;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.2);
 }
+
+/*
+  Mobile responsiveness.
+  On smaller screens, the layout stacks vertically so the quiz remains readable and comfortable to use.
+*/
 @media only screen and (max-width: 768px) {
-    .quizContainer{
-        flex-direction: column;
-    }
+  .quizContainer {
+    flex-direction: column;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   .quizContainer .heading {
     flex-direction: column;
+    align-items: flex-start;
   }
-  .main{
+
+  .main,
+  .quizSidebar {
     width: 100%;
   }
-  .quizSidebar{
-    width: 100%;
+
+  .quizContainer .btn {
+    flex-direction: column;
   }
 }

@@ -135,7 +135,7 @@ function Quiz() {
         setQueResponse([]);
         setOptions([]);
         setVisit([true, ...new Array(9).fill(false)]);
-        setTimer(1150);
+        setTimer(150);
         setDisplayResult(false);
 
         const data = await quizAPI(apiURL, categoryNum);
@@ -258,6 +258,8 @@ function Quiz() {
               queData={queData}
               options={options}
               queResponse={queResponse}
+              solvedNum = {solvedNum}
+              visitedNum = {visitedNum}
               nonVistedNum={nonVistedNum}
               onClick={handleModalClose}
               quizCategory={quizCategory}

@@ -11,6 +11,8 @@ function QuizResult({
   totalmarks,
   queData,
   options,
+  solvedNum,
+  visitedNum,
   nonVistedNum,
   queResponse,
   onClick,
@@ -61,6 +63,9 @@ function QuizResult({
         <p>
           Congratulations! on completing <b>{quizCategory} </b>quiz
         </p>
+        <h3>Total Visited Question: {visitedNum}</h3>
+        <h3>Total Non Visited Question: {nonVistedNum}</h3>
+        <h3>Total Solved Question: {solvedNum}</h3>
         <h3>Your Score: {marks}</h3>
         <h3>Total Score: {totalmarks}</h3>
         <Button
