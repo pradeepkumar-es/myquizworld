@@ -63,11 +63,9 @@ function QuizResult({
         <p>
           Congratulations! on completing <b>{quizCategory} </b>quiz
         </p>
-        <h3>Total Visited Question: {visitedNum}</h3>
-        <h3>Total Non Visited Question: {nonVistedNum}</h3>
+        <h3>Total Visited Question: {visitedNum}/{visitedNum + nonVistedNum}</h3>
         <h3>Total Solved Question: {solvedNum}</h3>
-        <h3>Your Score: {marks}</h3>
-        <h3>Total Score: {totalmarks}</h3>
+        <h3>Your Score: {marks}/{totalmarks}</h3>
         <Button
           text={isDetailOpen ? "Close Details" : "Analyse Result"}
           onClick={() => setIsDetailOpen((prev) => !prev)}

@@ -29,6 +29,7 @@ export default function Categories() {
     "Science: Computers",
     "Science: Mathematics",
     "Mythology",
+    "Sports",
     "Geography",
     "History",
     "Politics",
