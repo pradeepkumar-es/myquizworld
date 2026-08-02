@@ -14,40 +14,60 @@ import { decodeHTML } from "../utils/decodeHTML";
 import { shuffleCollection } from "../utils/shuffleCollection";
 import { calculateSolvedNum } from "../utils/calculateSolvedNum";
 import { calculateVisitedNum } from "../utils/calculateVisitedNum";
+
+// Main quiz page: loads questions, handles answer selection, tracks score,
+// and displays the result modal when the user submits or the timer ends.
 function Quiz() {
+  // Question data fetched from the API or fallback source.
   const [queData, setQueData] = useState([]);
+
+  // Current question index being displayed.
   const [currentQue, setCurrentQue] = useState(0);
+
+  // Score for the active quiz session.
   const [marks, setMarks] = useState(0);
-  const [queResponse, setQueResponse] = useState([
-    // {
-    //   selectedopt: 0, // 0 for not selected, greater than it is selected
-    //   isSolved: false,
-    // },
-  ]);
-  // const [selectedopt, setSelectedopt] = useState(0);
+
+  // Stores answer selections per question.
+  // Example: { selectedopt: 3, isSolved: true }
+  const [queResponse, setQueResponse] = useState([]);
+
+  // Shows the final result modal once the user submits or timer expires.
   const [displayResult, setDisplayResult] = useState(false);
-  const [options, setOptions] = useState([
-    // [opt1, opt2, ....]
-  ]);
-  console.log(options)
+
+  // Randomized options for each question.
+  const [options, setOptions] = useState([]);
+
+  // Tracks which questions were viewed/visited in the quiz.
   const [visit, setVisit] = useState([true, ...new Array(9).fill(false)]);
+
+  // Derived values for sidebar status counts.
   const visitedNum = queData.length > 0 ? calculateVisitedNum(visit) : 0;
   const nonVistedNum = 10 - visitedNum;
   const solvedNum = calculateSolvedNum(queResponse);
+
+  // Reads the selected category from the URL query string.
   const [searchParams, setSearchParams] = useSearchParams();
-  const categoryNum = searchParams.get("category"); //get categoryNum from current url's query string
-  const navigate = useNavigate(); //return a function
-  // console.log("categoryNum", categoryNum);
+  const categoryNum = searchParams.get("category");
+
+  // Navigation used to move back to the category page after finishing a quiz.
+  const navigate = useNavigate();
+
+  // Category label, decoded from HTML entities returned by the API.
   const quizCategory = decodeHTML(queData?.[currentQue]?.category);
 
-  //timer
-  const [timer, setTimer] = useState(1150);
+  // Quiz-level countdown timer.
+  const [timer, setTimer] = useState(150);
+
+  // Toggle for showing or hiding the individual question timer bar.
   const [showTimerBar, setShowTimerBar] = useState(true);
+
+  // Difficulty setting for the active question set.
   const [difficulty, setDifficulty] = useState("random");
-  console.log(difficulty);
+
+  // Start the overall countdown as soon as the quiz data loads.
   useEffect(() => {
-    if (queData.length <= 0) return; //start timer only when que data loaded
-    console.log("inside time");
+    if (queData.length <= 0) return;
+
     const intervalId = setInterval(() => {
       setTimer((t) => {
         if (t <= 0) {
@@ -59,12 +79,15 @@ function Quiz() {
         }
       });
     }, 1000);
+
     return () => {
       clearInterval(intervalId);
     };
   }, [queData.length]);
+
   const timeString = Math.floor(timer / 60) + " : " + (timer % 60);
 
+  // Shuffle and decode the answer choices for the current question.
   const handleOption = (data, queIndex) => {
     const option = [
       data[queIndex].correct_answer,
@@ -72,7 +95,8 @@ function Quiz() {
     ];
     const decodedOption = option.map((val) => decodeHTML(val));
     const shuffledOptions = shuffleCollection(decodedOption);
-    // setOptions(shuffledOptions);
+
+    // Do not overwrite a question that has already been answered.
     if (queResponse[currentQue]?.isSolved) {
       return;
     }
@@ -84,24 +108,27 @@ function Quiz() {
     });
   };
 
+  // Rebuild options whenever the question or question set changes.
   useEffect(() => {
     if (queData.length > 0) {
-      handleOption(queData, currentQue); //keep updating option on new question
+      handleOption(queData, currentQue);
     }
   }, [queData, currentQue]);
 
+  // Fetches a fresh set of questions whenever the category or difficulty changes.
   useEffect(() => {
     let isMounted = true;
 
-    console.log("Effect is running");
-    const apiURL = Number(categoryNum) > 8
-      ? difficulty !== "random"
-        ? `https://opentdb.com/api.php?amount=10&category=${categoryNum}&difficulty=${difficulty}&type=multiple`
-        : `https://opentdb.com/api.php?amount=10&category=${categoryNum}&type=multiple`
-      : "https://opentdb.com/api.php?amount=10&type=multiple";
+    const apiURL =
+      Number(categoryNum) > 8
+        ? difficulty !== "random"
+          ? `https://opentdb.com/api.php?amount=10&category=${categoryNum}&difficulty=${difficulty}&type=multiple`
+          : `https://opentdb.com/api.php?amount=10&category=${categoryNum}&type=multiple`
+        : "https://opentdb.com/api.php?amount=10&type=multiple";
 
     async function loadData() {
       try {
+        // Reset quiz state before loading a new question set.
         setQueData([]);
         setCurrentQue(0);
         setMarks(0);
@@ -115,13 +142,11 @@ function Quiz() {
         if (!isMounted) return;
 
         setQueData(data ?? []);
-        console.log(data);
       } catch (err) {
         console.log("Error:", err.message);
       }
     }
 
-    console.log("loading");
     loadData();
 
     return () => {
@@ -129,6 +154,7 @@ function Quiz() {
     };
   }, [categoryNum, difficulty]);
 
+  // Move to the next question and mark it visited.
   const nextQue = () => {
     if (currentQue < queData.length - 1) {
       setCurrentQue((c) => c + 1);
@@ -143,6 +169,8 @@ function Quiz() {
       });
     }
   };
+
+  // Go to the previous question.
   const backQue = () => {
     if (currentQue > 0) {
       setCurrentQue((c) => c - 1);
@@ -158,25 +186,20 @@ function Quiz() {
     }
   };
 
+  // Update the score based on the currently selected answer.
   const updateScore = (optionIndex) => {
-    // optionIndex is zero-based
     if (!queData[currentQue]) return;
+
     const selectedAnswer = options[currentQue]?.[optionIndex];
     const correctAnswer = decodeHTML(queData[currentQue].correct_answer);
 
-    if (
-      (queResponse[currentQue]?.isSolved ?? false) &&
-      selectedAnswer === correctAnswer
-    ) {
-      console.log("ignore score");
-      return; // ignore when already visited and user clicked the same correct option
+    // Prevent duplicate scoring when the same correct answer is clicked again.
+    if ((queResponse[currentQue]?.isSolved ?? false) && selectedAnswer === correctAnswer) {
+      return;
     }
 
-    if (
-      (queResponse[currentQue]?.isSolved ?? false) &&
-      selectedAnswer !== correctAnswer
-    ) {
-      console.log("update score"); //if already visited and selected answer wrong, then update score to reduce mark
+    // Remove a mark if the user changes a previous answer to a wrong one.
+    if ((queResponse[currentQue]?.isSolved ?? false) && selectedAnswer !== correctAnswer) {
       setMarks((m) => {
         if (m > 0) {
           return m - 1;
@@ -186,17 +209,19 @@ function Quiz() {
       });
     }
 
+    // Add a mark when the answer is correct.
     if (selectedAnswer === correctAnswer) {
-      console.log("update score");
       setMarks((m) => m + 1);
     }
   };
+
+  // Close the result popup and return to the categories page.
   const handleModalClose = () => {
     setDisplayResult(false);
-    navigate("/categories", { replace: true }); //2nd argument to avoid going back to prev page after navigation
+    navigate("/categories", { replace: true });
   };
 
-  //hide scroll when result modal is displayed
+  // Disable page scrolling while the result modal is open.
   useEffect(() => {
     document.body.style.overflow = displayResult ? "hidden" : "scroll";
 
@@ -205,11 +230,11 @@ function Quiz() {
     };
   }, [displayResult]);
 
-  //handle Question Difficulty
-  function handleDifficulty(e){
-    setDifficulty(e.target.value)
-    // navigate(0);
+  // Update the selected difficulty from the dropdown.
+  function handleDifficulty(e) {
+    setDifficulty(e.target.value);
   }
+
   return (
     <div className="quizContainer">
       <div className="main">
@@ -219,43 +244,50 @@ function Quiz() {
             <b>
               Overall Time Left:{" "}
               <span style={{ color: timer < 30 ? "red" : "green" }}>
-                {" "}
-                {timeString}{" "}
+                {timeString}
               </span>
             </b>
           </p>
         </div>
+
         {displayResult ? (
           createPortal(
             <QuizResult
               marks={marks}
               totalmarks={queData?.length}
-              queData = {queData}
-              options = {options}
-              queResponse = {queResponse}
-              nonVistedNum = {nonVistedNum}
+              queData={queData}
+              options={options}
+              queResponse={queResponse}
+              nonVistedNum={nonVistedNum}
               onClick={handleModalClose}
               quizCategory={quizCategory}
             />,
-            document.getElementById("quizResultModal"),
+            document.getElementById("quizResultModal")
           )
         ) : (
           <>
-          <div>
-            <label htmlFor="difficulyLevel">
-              Set Difficulty :{" "}
-              <select name="difficulyLevel" id="difficulyLevel" className="level"
-              value = {difficulty}
-              onChange={handleDifficulty}
-              >
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard"> Hard</option>
-                <option value="random">Random</option>
-              </select>
-            </label>
-            <span style={{paddingLeft:"25px"}}>Current Difficulty: <span style={{fontWeight:"bold"}}>{queData?.[currentQue]?.difficulty.toUpperCase()}</span></span>
+            <div>
+              <label htmlFor="difficulyLevel">
+                Set Difficulty:{" "}
+                <select
+                  name="difficulyLevel"
+                  id="difficulyLevel"
+                  className="level"
+                  value={difficulty}
+                  onChange={handleDifficulty}
+                >
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                  <option value="random">Random</option>
+                </select>
+              </label>
+
+              <span style={{ paddingLeft: "25px" }}>
+                Current Difficulty: <span style={{ fontWeight: "bold" }}>{queData?.[currentQue]?.difficulty?.toUpperCase()}</span>
+              </span>
             </div>
+
             <label htmlFor="timerBar">
               <input
                 id="timerBar"
@@ -263,24 +295,23 @@ function Quiz() {
                 type="checkbox"
                 checked={showTimerBar}
                 onChange={(e) => setShowTimerBar(e.target.checked)}
-              />{" "}
+              />
               {showTimerBar ? "Hide" : "Set"} Timer Bar for Each Question
             </label>
+
             {showTimerBar && (
               <TimerProgressBar
                 key={currentQue}
                 timeLimit={150 / queData?.length}
                 nextQue={nextQue}
               />
-            )}{" "}
-            {/*key is for restarting animation or remounting timer progress animation on next question */}
+            )}
+
             <div className="question">
               {queData?.length > 0 ? (
                 <>
                   <p>
-                    <span>
-                      {currentQue + 1}/{queData?.length}:{" "}
-                    </span>
+                    <span>{currentQue + 1}/{queData?.length}: </span>
                     {decodeHTML(queData?.[currentQue]?.question)}
                   </p>
                 </>
@@ -288,52 +319,33 @@ function Quiz() {
                 "Loading...."
               )}
             </div>
+
             <div className="option">
               {options[currentQue]?.map((option, i) => {
                 return (
                   <button
                     key={i}
-                    className={`optionbtn ${queResponse[currentQue]?.selectedopt === i + 1 ? "checked" : null}`} //here i+1 is used instead of i so that on options load, no options get checked
+                    className={`optionbtn ${queResponse[currentQue]?.selectedopt === i + 1 ? "checked" : null}`}
                     onClick={() => {
-                      // setSelectedopt(i + 1);
-                      // if (queResponse[currentQue]?.isSolved) {
-                      //   setQueResponse()
-                      //   queResponse[currentQue].selectedopt = i + 1;
-                      // } else {
-                      setQueResponse(
-                        (prev) => {
-                          const updated = [...prev];
-                          updated[currentQue] = {
-                            selectedopt: i + 1,
-                            isSolved: true,
-                          };
-                          updateScore(i); // zero-based option index
-                          return updated;
-                        },
-                        // [
-                        //   ...queResponse,
-                        //   {
-                        //     selectedopt: i + 1, // 0 for not selected, greater than it, is selected
-                        //     isSolved: true,
-                        //   },
-                        // ]
-                      );
-                      // }
-                    }} //when user click one of option, state update with option 1/2/3/4 which cause component re-render, now this time
-                    //  one of the option get match with i+1 so that one option get checked
+                      setQueResponse((prev) => {
+                        const updated = [...prev];
+                        updated[currentQue] = {
+                          selectedopt: i + 1,
+                          isSolved: true,
+                        };
+                        updateScore(i);
+                        return updated;
+                      });
+                    }}
                   >
-                    {" "}
                     {option}
                   </button>
                 );
               })}
             </div>
+
             <div className="btn">
-              <Button
-                onClick={backQue}
-                isDisabled={currentQue === 0}
-                text="Back"
-              />
+              <Button onClick={backQue} isDisabled={currentQue === 0} text="Back" />
               {currentQue === queData?.length - 1 ? (
                 <Button onClick={() => setDisplayResult(true)} text="Submit" />
               ) : (
@@ -343,6 +355,7 @@ function Quiz() {
           </>
         )}
       </div>
+
       <div className="quizSidebar">
         <QuizSidebar
           data={queData}

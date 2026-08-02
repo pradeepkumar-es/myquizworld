@@ -1,10 +1,12 @@
 import { questions as fallbackQuestions } from "../data/mockQuestions";
 
-// Cache fetched questions and active requests.
+// Global memory caches keep fetched question sets stable during the session.
+// This prevents duplicate API calls when a user revisits the same category.
 const apiCache = new Map();
 const inRunningRequests = new Map();
 
-// Normalize the API payload into a questions array.
+// OpenTDB delivers results inside the `results` array.
+// This helper normalizes the response and gives us a clean question list.
 function getQuestionsFromPayload(data) {
   if (Array.isArray(data?.results)) {
     return data.results;
@@ -13,15 +15,16 @@ function getQuestionsFromPayload(data) {
 }
 
 // Fetch quiz questions with caching and fallback support.
+// This is the main bridge between the UI and the Open Trivia DB API.
 export async function quizAPI(url, categoryNum) {
   const cacheKey = `${categoryNum || "default"}::${url}`;
 
-  // Return cached results if already available.
+  // If the same quiz set was already fetched, return it instantly.
   if (apiCache.has(cacheKey)) {
     return apiCache.get(cacheKey);
   }
 
-  // Reuse the same request if one is already running.
+  // If the same request is already in flight, reuse it instead of starting a duplicate fetch.
   if (inRunningRequests.has(cacheKey)) {
     return inRunningRequests.get(cacheKey);
   }
@@ -47,7 +50,7 @@ export async function quizAPI(url, categoryNum) {
           throw new Error("No questions returned from API");
         }
 
-        // Retry once after a short pause for rate limiting.
+        // Retry once when the API is rate limiting requests.
         if (response.status === 429 && attempt === 0) {
           attempt += 1;
           await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -56,7 +59,7 @@ export async function quizAPI(url, categoryNum) {
 
         throw new Error(`API failed with status code: ${response.status}`);
       } catch (error) {
-        // Fall back to local questions if the API fails.
+        // Use the local mock database if the API is unavailable or broken.
         console.warn("API request failed, using local quiz data:", error);
         const fallback = fallbackQuestions.slice(0, 10);
         apiCache.set(cacheKey, fallback);

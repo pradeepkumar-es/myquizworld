@@ -1,10 +1,12 @@
-// Import the functions you need from the SDKs you need
+// Firebase setup for this project.
+// This file is the central configuration point for any future Firebase auth, database, or storage features.
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// TODO: Add SDKs for Firebase products that you want to use.
+// See: https://firebase.google.com/docs/web/setup#available-libraries
+
+// Firebase web app configuration.
+// These values are project-specific and should be kept private in production environments.
 const firebaseConfig = {
   apiKey: "AIzaSyDYmjhfHqIPfWnwJAl5VgQCMVOLZ7k6mbo",
   authDomain: "myquizworld-a2850.firebaseapp.com",
@@ -13,8 +15,8 @@ const firebaseConfig = {
   storageBucket: "myquizworld-a2850.appspot.com",
   messagingSenderId: "3230072239",
   appId: "1:3230072239:web:78f1c1ffab7bc772c1435a",
-  measurementId: "G-YD8WFD9ZCM"
+  measurementId: "G-YD8WFD9ZCM",
 };
 
-// Initialize Firebase
+// Initialize Firebase app and export it so other modules can reuse the instance.
 export const app = initializeApp(firebaseConfig);
